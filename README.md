@@ -1,9 +1,9 @@
 # Nova-AI 🚀
 
  
-> *Not: Yukarıdaki görsel bir yer tutucudur. Uygulamanızın ekran görüntüsü ile değiştirebilirsiniz.*
 
-**Nova-AI**, Google'ın güçlü Gemini modellerini masaüstünüze getiren, Electron ile oluşturulmuş modern ve zengin özelliklere sahip bir yapay zeka sohbet asistanıdır.
+
+**Nova-AI**,Electron ile oluşturulmuş modern ve zengin özelliklere sahip bir yapay zeka sohbet asistanıdır.
 
 [![Sürüm](https://img.shields.io/badge/sürüm-v1.0.2_Beta_3-blue.svg)](https://github.com/kullanici-adiniz/nova-ai/releases)
 [![Lisans](https://img.shields.io/badge/lisans-MIT-green.svg)](LICENSE)

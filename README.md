@@ -13,8 +13,6 @@
 ## ✨ Özellikler
 
 Nova-AI, standart bir sohbet uygulamasının ötesine geçen bir dizi güçlü özellik sunar:
-
-*   **🧠 Güçlü Yapay Zeka:** Google'ın `Gemini 1.5 Pro` ve `Gemini 1.5 Flash` modelleri arasında geçiş yapma imkanı.
 *   **👥 Çoklu Kullanıcı Desteği:** Her kullanıcı için ayrı profil ve sohbet geçmişi ile güvenli ve kişisel bir deneyim.
 *   **💬 Kalıcı Sohbet Geçmişi:** Tüm konuşmalarınız yerel olarak saklanır ve kolayca erişilebilir.
 *   **🖼️ Görsel Oluşturma:** Metin açıklamalarından görseller yaratın.

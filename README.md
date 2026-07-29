@@ -30,7 +30,6 @@ Nova-AI, standart bir sohbet uygulamasının ötesine geçen bir dizi güçlü �
 ## 🛠️ Kullanılan Teknolojiler
 
 *   **Masaüstü Çerçevesi:** Electron
-*   **Yapay Zeka Modeli:** Google Gemini API
 *   **Arayüz:** HTML5, CSS3, Vanilla JavaScript
 *   **Kütüphaneler:**
     *   Marked.js: Markdown metinlerini HTML'e dönüştürmek için.
@@ -52,7 +51,7 @@ Projeyi yerel makinenizde çalıştırmak ve geliştirmek için aşağıdaki ad�
 
 1.  **Projeyi Klonlayın:**
     ```bash
-    git clone https://github.com/kullanici-adiniz/nova-ai.git
+    git clone https://github.com/novaui0/nova-ai.git
     cd nova-ai
     ```
 
@@ -60,22 +59,6 @@ Projeyi yerel makinenizde çalıştırmak ve geliştirmek için aşağıdaki ad�
     ```bash
     npm install
     ```
-
-3.  **API Anahtarını Yapılandırın:**
-    *   Google AI Studio'dan bir Gemini API anahtarı alın: https://aistudio.google.com/app/apikey
-    *   `index.html` dosyasını açın ve `API_KEY` değişkenine kendi anahtarınızı yapıştırın:
-    
-    ```javascript
-    // index.html -> <script> bloğu içinde
-    let API_KEY = "BURAYA_KENDI_API_ANAHTARINIZI_GIRIN"; 
-    ```
-
-4.  **Uygulamayı Başlatın:**
-    Geliştirme modunda çalıştırmak için:
-    ```bash
-    npm start
-    ```
-
 ---
 
 ## 📦 Uygulamayı Paketleme

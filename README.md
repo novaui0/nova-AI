@@ -9,7 +9,42 @@
 [![Lisans](https://img.shields.io/badge/lisans-MIT-green.svg)](LICENSE)
 
 ---
+## ➕ En Son Eklenenler
+# Nova-AI v1.0.4 Sürüm Notları
 
+Bu sürüm, kullanıcı deneyimini zenginleştiren, yönetici yeteneklerini artıran ve puan sistemini daha dinamik hale getiren bir dizi önemli yenilik ve düzeltme içeriyor.
+
+---
+
+### ✨ Yeni Özellikler
+
+*   **💎 Katmanlı Plan Sistemi:** "Nova Advanced" tek bir seviye olmaktan çıkıp, puanla erişilebilen çok katmanlı bir yapıya dönüştü: **Go, Plus, Pro, Ultra ve Advanced**.   Her     katman, kendine özgü özelliklerin kilidini açar:
+    *   **Go:** Gelişmiş Sohbet Şablonları
+    *   **Plus:** Veri Yönetimi (İçe/Dışa Aktarma)
+    *   **Pro:** Görsel Oluşturma ve Plan Modu
+    *   **Ultra:** Derin Araştırma
+    *   **Advanced:** En güçlü model olan `Nova 3.6 Flash`'ı kullanma.
+*   **⚙️ Gelişmiş Yönetici Paneli:** Terminal üzerinden yöneticiler artık daha fazla kontrole sahip:
+    *   **Premium Seviye Değiştirme:** Kullanıcıların plan katmanını doğrudan yönetici'ler değiştirebilir.
+    *   **Puan Silme:** Kullanıcılardan puan ekleme/silme yapabilir.
+    *   **Tüm Geçmişi Temizle:** Yöneticiler tüm kullanıcıların yerel sohbet geçmişlerini temizleyebilir.
+
+---
+
+### 🚀 İyileştirmeler
+
+*   **🔄 Anlık Arayüz Güncellemeleri:**
+    *   Yönetici tarafından yapılan puan veya premium seviye değişiklikleri artık kullanıcı arayüzüne **5 saniye içinde** yansıyor. Çıkış yapıp tekrar girmeye gerek yok!
+    *   Ayarlar menüsüne, puanı anında yenilemek için bir **"Yenile" butonu** eklendi.
+
+---
+
+### 🐞 Hata Düzeltmeleri
+
+*   **Yükseltme Menüsü Düzeltmesi:** "Yükselt" menüsünde, kullanıcının sahip olmadığı katmanların bile hatalı bir şekilde "Etkin" olarak görünmesi sorunu giderildi.
+---
+
+Bu sürümle birlikte Nova-AI, hem kullanıcılar hem de yöneticiler için çok daha esnek ve güçlü bir platform haline geldi.
 ## ✨ Özellikler
 
 Nova-AI, standart bir sohbet uygulamasının ötesine geçen bir dizi güçlü özellik sunar:

@@ -10,7 +10,7 @@
 
 ---
 ## ➕ En Son Eklenenler
-# Nova-AI v1.0.4 Sürüm Notları
+# Nova-AI v1.0.4 Beta 1 Sürüm Notları
 
 Bu sürüm, kullanıcı deneyimini zenginleştiren, yönetici yeteneklerini artıran ve puan sistemini daha dinamik hale getiren bir dizi önemli yenilik ve düzeltme içeriyor.
 

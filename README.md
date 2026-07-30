@@ -49,13 +49,13 @@ Bu sürümle birlikte Nova-AI, hem kullanıcılar hem de yöneticiler için çok
 
 Nova-AI, standart bir sohbet uygulamasının ötesine geçen bir dizi güçlü özellik sunar:
 
-*   **🧠 Güçlü Yapay Zeka:** Google'ın `Gemini 1.5 Pro` ve `Gemini 1.5 Flash` modelleri arasında geçiş yapma imkanı.
+*   **🧠 Güçlü Yapay Zeka:** Nova'nın `3.5 Flash` ve `3.6 Flash` modelleri arasında geçiş yapma imkanı.
 *   **👥 Çoklu Kullanıcı Desteği:** Her kullanıcı için ayrı profil ve sohbet geçmişi ile güvenli ve kişisel bir deneyim.
 *   **💬 Kalıcı Sohbet Geçmişi:** Tüm konuşmalarınız yerel olarak saklanır ve kolayca erişilebilir.
 *   **🖼️ Görsel Oluşturma:** Metin açıklamalarından görseller yaratın.
 *   **🤖 Plan Modu:** Yapay zekanın size sorular sorarak hedeflerinize yönelik adım adım planlar oluşturmasını sağlayın.
 *   **🔍 Derin Araştırma:** Belirttiğiniz konular hakkında internetten detaylı bilgi toplayıp özetleyin.
-*   **🎙️ Sesli Komut:** "Gemini Live" özelliği ile sesli olarak sohbet edin.
+*   **🎙️ Sesli Komut:** "Nova Live" özelliği ile sesli olarak sohbet edin.
 *   **📁 Dosya Yükleme:** Sohbetlerinize resim ve metin dosyaları ekleyin.
 *   **🌙 Karanlık Mod:** Göz yormayan bir deneyim için aydınlık ve karanlık tema arasında geçiş yapın.
 *   **🔄 Güncelleme Ekranı :** `electron-updater` entegrasyonu sayesinde yeni sürümler yayınlandığında uygulamada güncelleme ekranı çıkar ve kolayca güncelleyebilirsiniz.

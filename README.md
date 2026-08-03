@@ -10,41 +10,31 @@
 
 ---
 ## ➕ En Son Eklenenler
-# Nova-AI v1.0.4 Beta 1 Sürüm Notları
+# Nova-AI v1.0.5 Sürüm Notları
 
-Bu sürüm, kullanıcı deneyimini zenginleştiren, yönetici yeteneklerini artıran ve puan sistemini daha dinamik hale getiren bir dizi önemli yenilik ve düzeltme içeriyor.
+Nova-AI v1.0.5 - Arayüz ve Kullanıcı Deneyimi Güncellemesi
+Bu sürüm, Nova-AI'nin kullanıcı deneyimini ve arayüzünü temelden iyileştiren bir dizi heyecan verici yeni özellik, performans artışı ve hata düzeltmesi içeriyor. Artık daha akıllı, daha hızlı ve daha kişisel bir yapay zeka asistanınız var!
 
----
-
-### ✨ Yeni Özellikler
-
-*   **💎 Katmanlı Plan Sistemi:** "Nova Advanced" tek bir seviye olmaktan çıkıp, puanla erişilebilen çok katmanlı bir yapıya dönüştü: **Go, Plus, Pro, Ultra ve Advanced**.   Her     katman, kendine özgü özelliklerin kilidini açar:
-    *   **Go:** Gelişmiş Sohbet Şablonları
-    *   **Plus:** Veri Yönetimi (İçe/Dışa Aktarma)
-    *   **Pro:** Görsel Oluşturma ve Plan Modu
-    *   **Ultra:** Derin Araştırma
-    *   **Advanced:** En güçlü model olan `Nova 3.6 Flash`'ı kullanma.
-*   **⚙️ Gelişmiş Yönetici Paneli:** Terminal üzerinden yöneticiler artık daha fazla kontrole sahip:
-    *   **Premium Seviye Değiştirme:** Kullanıcıların plan katmanını doğrudan yönetici'ler değiştirebilir.
-    *   **Puan Silme:** Kullanıcılardan puan ekleme/silme yapabilir.
-    *   **Tüm Geçmişi Temizle:** Yöneticiler tüm kullanıcıların yerel sohbet geçmişlerini temizleyebilir.
-
----
-
-### 🚀 İyileştirmeler
-
-*   **🔄 Anlık Arayüz Güncellemeleri:**
-    *   Yönetici tarafından yapılan puan veya premium seviye değişiklikleri artık kullanıcı arayüzüne **5 saniye içinde** yansıyor. Çıkış yapıp tekrar girmeye gerek yok!
-    *   Ayarlar menüsüne, puanı anında yenilemek için bir **"Yenile" butonu** eklendi.
-
----
-
-### 🐞 Hata Düzeltmeleri
-
-*   **Yükseltme Menüsü Düzeltmesi:** "Yükselt" menüsünde, kullanıcının sahip olmadığı katmanların bile hatalı bir şekilde "Etkin" olarak görünmesi sorunu giderildi.
----
-
-Bu sürümle birlikte Nova-AI, hem kullanıcılar hem de yöneticiler için çok daha esnek ve güçlü bir platform haline geldi.
+✨ Yeni Özellikler
+🤖Android Bu Sürümde Destekleniyor!
+🎯 Gelişmiş Plan Modu: Plan Modu artık sizi odaklanmaya teşvik eden tam ekran, şık bir arayüzle geliyor. Hedefinizi girin, "Planlamayı Başlat" butonuna tıklayın ve Nova'nın size adım adım yol göstermesini izleyin. Mod, özel ses efektleriyle daha da etkileşimli hale getirildi.
+📋 Kod Blokları için "Kopyala" Butonu: Artık Nova'nın verdiği kod bloklarının sağ üst köşesinde bir "Kopyala" butonu bulunuyor. Tek tıkla kodu panoya alın ve hoş bir ses efektiyle işlemin tamamlandığını duyun!
+↕️ Sürükle-Bırak ile Sohbet Sıralama: Kenar çubuğundaki sohbetlerinizi artık fare ile tutup sürükleyerek kolayca yeniden sıralayabilirsiniz. Düzeniniz, uygulama yeniden başlatıldığında bile korunur.
+👤 Gelişmiş Profil Yönetimi: Kullanıcı seçim ekranı artık çok daha işlevsel:
+Düzenle & Sil: Profil kartlarının üzerine gelerek adınızı düzenleyebilir veya profilinizi silebilirsiniz.
+Son Giriş Bilgisi: Her profil kartında artık o profile en son ne zaman giriş yapıldığı görünüyor.
+Akıllı Sıralama: Profiller, en son giriş yapılan tarihe göre otomatik olarak sıralanır.
+💡 Günün İpucu & Yenilikler:
+Uygulama her açıldığında, size faydalı bilgiler sunan rastgele bir "Günün İpucu" penceresi gösterilir. İstemiyorsanız "Bir daha gösterme" seçeneğini işaretleyebilirsiniz.
+Uygulama güncellendiğinde, sizi yeni eklenen özellikler hakkında bilgilendiren bir "Yenilikler" penceresi karşılar.
+📅 Sohbet Listesine Tarih Eklendi: Artık her sohbetin yanında, o sohbetin oluşturulduğu tarihi gösteren küçük bir etiket bulunuyor.
+🎨 "Temayı Sıfırla" Butonu: Ayarlar menüsüne, tema ayarlarınızı kolayca varsayılan duruma döndürmenizi sağlayan bir buton eklendi.
+🐞 Hata Düzeltmeleri ve İyileştirmeler
+Mesajların Görünmemesi Sorunu Düzeltildi: Nova'nın yanıtlarının bazen görünmemesine neden olan API model uyumsuzluğu giderildi. Artık mesajlar güvenilir bir şekilde görüntüleniyor.
+Giriş Kutusunun Temizlenmemesi Sorunu Düzeltildi: Mesaj gönderdikten sonra metnin giriş kutusunda kalmasına neden olan hata düzeltildi.
+Daha İnce ve Zarif Logo: Açılış ekranındaki ve kenar çubuğundaki uygulama logosu, daha modern bir görünüm için inceltildi.
+Giriş Ekranı Animasyonları: Kullanıcı seçim ve giriş ekranlarındaki animasyonlar daha akıcı ve estetik hale getirildi.
+Genel Performans ve Stabilite: Arayüz genelinde çeşitli performans iyileştirmeleri ve küçük hata düzeltmeleri yapıldı.
 ## ✨ Özellikler
 
 Nova-AI, standart bir sohbet uygulamasının ötesine geçen bir dizi güçlü özellik sunar:

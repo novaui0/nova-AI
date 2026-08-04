@@ -3,6 +3,8 @@
  
 
 
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&pause=1000&color=F75C7E&center=true&vCenter=true&width=435&lines=Full-Stack+Developer;AI+%26+Web+Developer;Nova-AI+Creator)](https://git.io/typing-svg)
+
 **Website Link'i**:[Nova AI](https://novaui0.github.io/nova-AI/)
 
 **Nova-AI**,Electron ile oluşturulmuş modern ve zengin özelliklere sahip bir yapay zeka sohbet asistanıdır.

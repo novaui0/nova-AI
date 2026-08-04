@@ -3,6 +3,8 @@
  
 
 
+**Website Link'i**:https://novaui0.github.io/nova-AI/
+
 **Nova-AI**,Electron ile oluşturulmuş modern ve zengin özelliklere sahip bir yapay zeka sohbet asistanıdır.
 
 [![Sürüm](https://img.shields.io/badge/en_son_sürüm-v1.0.5-mintgreen.svg)](https://github.com/novaui0/nova-ai/releases)

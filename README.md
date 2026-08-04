@@ -3,7 +3,7 @@
  
 
 
-**Website Link'i**:https://novaui0.github.io/nova-AI/
+**Website Link'i**:[Nova AI](https://novaui0.github.io/nova-AI/)
 
 **Nova-AI**,Electron ile oluşturulmuş modern ve zengin özelliklere sahip bir yapay zeka sohbet asistanıdır.
 

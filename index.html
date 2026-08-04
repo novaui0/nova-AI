@@ -1,120 +1,593 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="description" content="A product of emergent.sh" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet" />
-        <!--
-        manifest.json provides metadata used when your web app is installed on a
-        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-        -->
-        <!--
-        Notice the use of  in the tags above.
-        It will be replaced with the URL of the `public` folder during the build.
-        Only files inside the `public` folder can be referenced from the HTML.
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova AI - Geleceğin Yapay Zeka Çözümleri</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'nova-bg': '#050609',
+            'nova-cyan': '#00F0FF',
+            'nova-purple': '#A04BFF',
+            'nova-muted': '#A1A7B3',
+            'nova-dim': '#4A5668',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'spin-slow': 'spin 20s linear infinite',
+            'scan': 'scan 3s linear infinite',
+            'marquee': 'marquee 62.5s linear infinite',
+            'lang-switch': 'langSwitch 0.4s ease-in-out forwards',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-20px) rotate(2deg)' },
+            },
+            scan: {
+              '0%': { transform: 'translateY(-100%)' },
+              '100%': { transform: 'translateY(100%)' },
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' }
+            },
+            langSwitch: {
+              '0%': { opacity: '0.1', filter: 'blur(6px)' },
+              '100%': { opacity: '1', filter: 'blur(0px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
 
-        Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
-        work correctly both with client-side routing and a non-root public URL.
-        Learn how to configure a non-root public URL by running `npm run build`.
-        -->
-        <title>Emergent | Fullstack App</title>
-        <script>window.addEventListener("error",function(e){if(e.error instanceof DOMException&&e.error.name==="DataCloneError"&&e.message&&e.message.includes("PerformanceServerTiming")){e.stopImmediatePropagation();e.preventDefault()}},true);</script>
-        <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
-    <script defer src="static/js/bundle.js"></script><script>
-if(window.self!==window.top){
-  var s=document.createElement("script");s.src="/visual-edit-overlay.js";document.head.appendChild(s);
-  window.tailwind=window.tailwind||{};tailwind.config={corePlugins:{preflight:false}};var t=document.createElement("script");t.src="https://cdn.tailwindcss.com";document.head.appendChild(t);
-}
-</script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <style>
+    body {
+      background-color: #050609;
+      color: #ffffff;
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .glass {
+      background: rgba(10, 12, 18, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .btn-neon {
+      background: linear-gradient(135deg, rgba(0,240,255,0.2) 0%, rgba(160,75,255,0.2) 100%);
+      border: 1px solid rgba(0, 240, 255, 0.5);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-neon:hover {
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+      border-color: rgba(0, 240, 255, 0.9);
+      transform: translateY(-2px);
+    }
+
+    /* Kesin ve görünür neon yazı stili */
+    .text-gradient-neon {
+      background: linear-gradient(135deg, #00F0FF 0%, #A04BFF 100%);
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+      color: #00F0FF;
+      display: inline-block;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+    }
+
+    .divider-fade {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+    }
+
+    #particle-canvas {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0; pointer-events: none; opacity: 0.4;
+    }
+
+    .fade-up { animation: fadeUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards; opacity: 0; }
+    .fade-in { animation: fadeIn 1s ease forwards; opacity: 0; }
+    
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .holo-container { perspective: 1000px; }
+    .holo-pod {
+      transition: transform 0.1s ease;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+    .holo-pod::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(0,240,255,0.05), transparent);
+      animation: scan 4s linear infinite;
+      z-index: 1;
+    }
+    .holo-pod img {
+      filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.6));
+    }
+
+    .marquee-container {
+      position: relative;
+      width: 100vw;
+      overflow: hidden;
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+  </style>
 </head>
-    <body>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root"></div>
-        <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<body>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  <canvas id="particle-canvas"></canvas>
+  <div id="root" class="relative z-10"></div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-        <script>
-            !(function (t, e) {
-                var o, n, p, r;
-                e.__SV ||
-                    ((window.posthog = e),
-                    (e._i = []),
-                    (e.init = function (i, s, a) {
-                        function g(t, e) {
-                            var o = e.split(".");
-                            2 == o.length && ((t = t[o[0]]), (e = o[1])),
-                                (t[e] = function () {
-                                    t.push(
-                                        [e].concat(
-                                            Array.prototype.slice.call(
-                                                arguments,
-                                                0,
-                                            ),
-                                        ),
-                                    );
-                                });
-                        }
-                        ((p = t.createElement("script")).type =
-                            "text/javascript"),
-                            (p.crossOrigin = "anonymous"),
-                            (p.async = !0),
-                            (p.src =
-                                s.api_host.replace(
-                                    ".i.posthog.com",
-                                    "-assets.i.posthog.com",
-                                ) + "/static/array.js"),
-                            (r =
-                                t.getElementsByTagName(
-                                    "script",
-                                )[0]).parentNode.insertBefore(p, r);
-                        var u = e;
-                        for (
-                            void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
-                                u.people = u.people || [],
-                                u.toString = function (t) {
-                                    var e = "posthog";
-                                    return (
-                                        "posthog" !== a && (e += "." + a),
-                                        t || (e += " (stub)"),
-                                        e
-                                    );
-                                },
-                                u.people.toString = function () {
-                                    return u.toString(1) + ".people (stub)";
-                                },
-                                o =
-                                    "init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(
-                                        " ",
-                                    ),
-                                n = 0;
-                            n < o.length;
-                            n++
-                        )
-                            g(u, o[n]);
-                        e._i.push([i, s, a]);
-                    }),
-                    (e.__SV = 1));
-            })(document, window.posthog || []);
-            posthog.init("phc_DbsPb39SRc8z3EiQ6Dhj6ikv4H4rTKcht9d4sZSesceP", {
-                api_host: "https://ap.emergent.sh",
-                person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well,
-                session_recording: {
-                    recordCrossOriginIframes: true,
-                    capturePerformance: false,
-                },
-            });
-        </script>
-    <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a25d075cef3fd26d',t:'MTc4NTg0MDkxNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  <script>
+    const e = React.createElement;
+    const { useState, useEffect, createContext, useContext, useRef } = React;
+
+    const LOGO_SRC = "novalogo.png";
+
+    // --- Sadece Bırakıldığında Yavaşlayarak Duran Kaydırma ---
+    const initInertiaScroll = () => {
+      let currentY = window.scrollY;
+      let velocity = 0;
+      let isWheelActive = false;
+      let wheelTimeout = null;
+      let animFrame = null;
+
+      const updateScroll = () => {
+        if (!isWheelActive) {
+          velocity *= 0.92;
+          currentY += velocity;
+          
+          const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+          currentY = Math.max(0, Math.min(currentY, maxScroll));
+          window.scrollTo(0, currentY);
+
+          if (Math.abs(velocity) > 0.1) {
+            animFrame = requestAnimationFrame(updateScroll);
+          } else {
+            velocity = 0;
+          }
+        }
+      };
+
+      const onWheel = (e) => {
+        isWheelActive = true;
+        currentY = window.scrollY;
+        
+        const scrollDelta = e.deltaY;
+        window.scrollBy(0, scrollDelta);
+        currentY = window.scrollY;
+
+        velocity = scrollDelta * 0.4;
+
+        clearTimeout(wheelTimeout);
+        if (animFrame) cancelAnimationFrame(animFrame);
+
+        wheelTimeout = setTimeout(() => {
+          isWheelActive = false;
+          animFrame = requestAnimationFrame(updateScroll);
+        }, 50);
+      };
+
+      window.addEventListener('wheel', onWheel, { passive: true });
+    };
+
+    // --- Partikül Arka Planı ---
+    const initParticles = () => {
+      const canvas = document.getElementById('particle-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let width, height;
+
+      const resize = () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      };
+      window.addEventListener('resize', resize);
+      resize();
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * width;
+          this.y = Math.random() * height;
+          this.size = Math.random() * 1.5 + 0.5;
+          this.speedX = Math.random() * 0.4 - 0.2;
+          this.speedY = Math.random() * 0.4 - 0.2;
+          this.baseColor = Math.random() > 0.5 ? '#00F0FF' : '#A04BFF';
+          this.alpha = Math.random() * 0.5 + 0.1;
+        }
+        update(mouseX, mouseY) {
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          if (this.x > width) this.x = 0; if (this.x < 0) this.x = width;
+          if (this.y > height) this.y = 0; if (this.y < 0) this.y = height;
+
+          if (mouseX && mouseY) {
+            let dx = mouseX - this.x;
+            let dy = mouseY - this.y;
+            let dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < 150) {
+              let force = (150 - dist) / 150;
+              this.x -= dx * force * 0.02;
+              this.y -= dy * force * 0.02;
+            }
+          }
+        }
+        draw() {
+          ctx.globalAlpha = this.alpha;
+          ctx.fillStyle = this.baseColor;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < 90; i++) particles.push(new Particle());
+
+      let mouseX = null, mouseY = null;
+      window.addEventListener('mousemove', (ev) => { mouseX = ev.clientX; mouseY = ev.clientY; });
+
+      const animate = () => {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.update(mouseX, mouseY);
+          p.draw();
+        });
+
+        ctx.globalAlpha = 0.05;
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            let dx = particles[i].x - particles[j].x;
+            let dy = particles[i].y - particles[j].y;
+            let dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < 100) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(animate);
+      };
+      animate();
+    };
+
+    const translations = {
+      tr: {
+        nav: { services: "Hizmetler", why: "Neden Biz", contact: "İletişim", cta: "Başlayın" },
+        hero: { 
+          badge: "ATOMİK GÜÇLÜ YAPAY ZEKA", 
+          overline: "Nova AI Platformu", 
+          title: "İşletmenizin Geleceğini", 
+          aiText: "Yapay Zeka",
+          titleEnd: "İle İnşa Edin", 
+          subtitle: "Nova AI, karmaşık veri süreçlerinizi atomik hassasiyetle otomatize eder ve akıllı asistanlar entegre ederek verimliliğinizi üst seviyeye taşır.",
+          downloadBtn: "İndir",
+          githubBtn: "Siteye Git"
+        },
+        en: {
+          nav: { services: "Services", why: "Why Us", contact: "Contact", cta: "Get Started" },
+          hero: { 
+            badge: "ATOMIC-POWERED AI", 
+            overline: "Nova AI Platform", 
+            title: "Build Your Business Future with", 
+            aiText: "Artificial Intelligence",
+            titleEnd: "", 
+            subtitle: "Nova AI automates complex data pipelines with atomic precision and integrates intelligent assistants to maximize your corporate performance.",
+            downloadBtn: "Download",
+            githubBtn: "Go to Site"
+          },
+          contact: { overline: "GET IN TOUCH", title: "Do you have a suggestion? Let's connect.", infoTitle: "INFO", form: { name: "Full Name", message: "Message", submit: "Send" } },
+          footer: { copyright: "© 2026 Nova AI. All rights reserved." },
+          chat: { title: "Nova Assistant", welcome: "Hello! Welcome to the Nova atomic network. How can I help you today?" }
+        },
+        contact: { overline: "İLETİŞİME GEÇİN", title: "Bir öneriniz mi var? İletişime Geçelim.", infoTitle: "BİLGİLER", form: { name: "Adınız", message: "Mesajınız", submit: "Gönder" } },
+        footer: { copyright: "© 2026 Nova AI. Tüm hakları saklıdır." },
+        chat: { title: "Nova Asistan", welcome: "Merhaba! Nova atomik ağına hoş geldiniz. Size nasıl yardımcı olabilirim?" }
+      }
+    };
+
+    const LangContext = createContext();
+
+    function AnimText({ children, className = "" }) {
+      const { lang } = useContext(LangContext);
+      return e('span', { key: lang, className: `inline-block animate-lang-switch ${className}` }, children);
+    }
+
+    function Header() {
+      const { lang, setLang, t } = useContext(LangContext);
+      return e('header', { className: 'fixed top-0 left-0 w-full z-50 glass border-b border-white/5 px-6 md:px-12 py-4 flex items-center justify-between' },
+        e('div', { className: 'flex items-center gap-3' },
+          e('img', { src: LOGO_SRC, alt: 'Nova Logo', className: 'w-9 h-9 rounded-full object-cover animate-spin-slow' }),
+          e('span', { className: 'font-display font-extrabold text-2xl tracking-tighter text-white' }, 'NOVA', e('span', { className: 'text-nova-cyan' }, '.AI'))
+        ),
+        e('nav', { className: 'hidden md:flex items-center gap-10 text-xs font-mono font-medium text-nova-muted uppercase tracking-widest' },
+          ['services', 'why', 'contact'].map(item => 
+            e('a', { key: item, href: '#contact', className: 'hover:text-white transition-colors relative group' }, 
+              e(AnimText, null, t.nav[item]),
+              e('span', { className: 'absolute -bottom-1 left-0 w-0 h-px bg-nova-cyan group-hover:w-full transition-all duration-300' })
+            )
+          )
+        ),
+        e('div', { className: 'flex items-center gap-4' },
+          e('button', {
+            onClick: () => setLang(lang === 'tr' ? 'en' : 'tr'),
+            className: 'text-[10px] font-mono px-3 py-1.5 rounded bg-white/5 border border-white/10 hover:border-nova-cyan transition-all uppercase cursor-pointer'
+          }, lang),
+          e('a', { href: '#contact', className: 'btn-neon px-6 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase text-white' }, 
+            e(AnimText, null, t.nav.cta)
+          )
+        )
+      );
+    }
+
+    function Hero() {
+      const { lang, t } = useContext(LangContext);
+      const podRef = useRef(null);
+
+      useEffect(() => {
+        const pod = podRef.current;
+        if (!pod) return;
+        const handleMove = (ev) => {
+          const rect = pod.getBoundingClientRect();
+          const x = ev.clientX - rect.left - rect.width/2;
+          const y = ev.clientY - rect.top - rect.height/2;
+          pod.style.transform = `rotateX(${-y/20}deg) rotateY(${x/20}deg) translateZ(10px)`;
+        };
+        const handleLeave = () => { pod.style.transform = `rotateX(0deg) rotateY(0deg) translateZ(0px)`; };
+        
+        const container = pod.parentElement;
+        container.addEventListener('mousemove', handleMove);
+        container.addEventListener('mouseleave', handleLeave);
+        return () => {
+          container.removeEventListener('mousemove', handleMove);
+          container.removeEventListener('mouseleave', handleLeave);
+        };
+      }, []);
+
+      return e('section', { className: 'min-h-screen pt-32 pb-20 px-6 md:px-12 grid md:grid-cols-[1fr,auto] gap-12 items-center relative overflow-hidden' },
+        e('div', { className: 'relative z-10' },
+          e('div', { className: 'fade-up inline-flex items-center gap-2 px-3 py-1 rounded-full border border-nova-cyan/20 bg-nova-cyan/5 text-nova-cyan text-[10px] font-mono mb-6 tracking-widest animate-pulse-slow' }, 
+            e('span', { className: 'w-1.5 h-1.5 rounded-full bg-nova-cyan animate-pulse' }),
+            e(AnimText, null, t.hero.badge)
+          ),
+          e('div', { className: 'fade-up text-nova-muted font-mono text-xs uppercase tracking-widest mb-2' }, 
+            e(AnimText, null, t.hero.overline)
+          ),
+          
+          /* Kesinlikle Görünür Neon Başlık */
+          e('h1', { className: 'fade-up text-5xl md:text-7xl font-extrabold max-w-4xl font-display leading-[0.95] mb-6 tracking-tighter' },
+            e(AnimText, null, t.hero.title), ' ',
+            e('span', { key: lang, className: 'text-gradient-neon animate-lang-switch mx-1' }, t.hero.aiText), ' ',
+            t.hero.titleEnd && e(AnimText, null, t.hero.titleEnd)
+          ),
+          
+          e('p', { className: 'fade-up text-nova-muted max-w-xl text-base md:text-lg mb-10 leading-relaxed font-light' }, 
+            e(AnimText, null, t.hero.subtitle)
+          ),
+          
+          e('div', { className: 'fade-up flex flex-wrap gap-4 items-center' },
+            e('a', { href: '#contact', className: 'btn-neon px-8 py-4 rounded-full font-bold text-sm tracking-wider uppercase text-white group' }, 
+              e(AnimText, null, t.nav.cta),
+              e('span', { className: 'inline-block ml-2 group-hover:translate-x-1 transition-transform' }, '→')
+            ),
+            e('a', { 
+              href: 'https://github.com/novaui0/nova-AI/releases/download/Nova-AI-1.0.5/Nova.AI.Setup.1.0.5.exe', 
+              target: '_blank',
+              rel: 'noopener noreferrer',
+              className: 'btn-neon px-8 py-4 rounded-full font-bold text-sm tracking-wider uppercase text-white group' 
+            }, 
+              e('span', { className: 'mr-2' }, '⬇'),
+              e(AnimText, null, t.hero.downloadBtn)
+            ),
+            e('a', { 
+              href: 'https://github.com/novaui0/nova-AI/', 
+              target: '_blank',
+              rel: 'noopener noreferrer',
+              className: 'btn-neon px-8 py-4 rounded-full font-bold text-sm tracking-wider uppercase text-white group' 
+            }, 
+              e(AnimText, null, t.hero.githubBtn),
+              e('span', { className: 'inline-block ml-2 group-hover:rotate-45 transition-transform' }, '↗')
+            )
+          )
+        ),
+        
+        e('div', { className: 'fade-in holo-container hidden md:block relative' },
+          e('div', { className: 'absolute -inset-10 bg-nova-cyan/10 blur-[100px] rounded-full opacity-50' }),
+          e('div', { ref: podRef, className: 'holo-pod glass p-10 rounded-full border border-nova-cyan/30 shadow-[0_0_60px_rgba(0,240,255,0.2)] animate-float' },
+            e('img', { src: LOGO_SRC, alt: 'Nova Atomic Logo', className: 'w-64 h-64 rounded-full object-cover' })
+          ),
+          e('div', { className: 'absolute -bottom-10 left-1/2 -translate-x-1/2 w-40 h-10 bg-nova-cyan/20 blur-xl rounded-full' })
+        )
+      );
+    }
+
+    function MarqueeBanner() {
+      const text = "• Geleceğin Yapay Zeka'sı • Akıllı Otomasyon • Atomik Hassasiyet • Sınırsız Potansiyel ";
+      return e('div', { className: 'marquee-container py-12 border-y border-white/5 bg-white/[0.01] my-10' },
+        e('div', { className: 'inline-block animate-marquee font-display font-extrabold text-5xl md:text-7xl uppercase tracking-widest text-gradient-neon' },
+          text + text + text + text
+        )
+      );
+    }
+
+    function Contact() {
+      const { t } = useContext(LangContext);
+      const [status, setStatus] = useState("");
+
+      const handleSubmit = (ev) => {
+        ev.preventDefault();
+        setStatus("sending");
+        setTimeout(() => setStatus("success"), 1500);
+      };
+
+      return e('section', { id: 'contact', className: 'py-24 px-6 md:px-12 max-w-7xl mx-auto' },
+        e('div', { className: 'divider-fade mb-20 fade-in' }),
+        e('div', { className: 'grid md:grid-cols-[1fr,minmax(400px,auto)] gap-16 items-start' },
+          e('div', { className: 'fade-up' },
+            e('span', { className: 'text-nova-cyan font-mono text-xs tracking-widest block mb-2' }, 
+              e(AnimText, null, t.contact.overline)
+            ),
+            e('h2', { className: 'text-4xl md:text-5xl font-display font-bold mb-4 tracking-tight' }, 
+              e(AnimText, null, t.contact.title)
+            ),
+            
+            e('div', { className: 'glass p-6 rounded-2xl space-y-4 border border-white/5 mt-10 max-w-sm' },
+              e('h3', { className: 'text-xs font-mono text-nova-dim tracking-wider uppercase' }, 
+                e(AnimText, null, t.contact.infoTitle)
+              ),
+              e('p', { className: 'text-sm font-medium text-nova-cyan' }, '📧 nova.studio.soft@gmail.com')
+            )
+          ),
+          e('form', { onSubmit: handleSubmit, className: 'fade-up glass p-10 rounded-3xl space-y-7 border border-white/5 relative' },
+            e('div', { className: 'absolute -top-5 -left-5 w-10 h-10 border-l-2 border-t-2 border-nova-cyan' }),
+            [ { label: t.contact.form.name, type: 'text' }, { label: 'E-posta', type: 'email' } ].map(field => 
+              e('div', { key: field.label },
+                e('label', { className: 'block text-xs font-mono text-nova-muted mb-2 uppercase tracking-tight' }, 
+                  e(AnimText, null, field.label)
+                ),
+                e('input', { required: true, type: field.type, className: 'w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-sm text-white focus:outline-none focus:border-nova-cyan transition-all' })
+              )
+            ),
+            e('div', null,
+              e('label', { className: 'block text-xs font-mono text-nova-muted mb-2 uppercase tracking-tight' }, 
+                e(AnimText, null, t.contact.form.message)
+              ),
+              e('textarea', { rows: 4, required: true, className: 'w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-sm text-white focus:outline-none focus:border-nova-cyan transition-all' })
+            ),
+            e('button', { type: 'submit', className: 'w-full btn-neon py-4 rounded-xl font-bold text-xs uppercase tracking-wider text-white cursor-pointer' },
+              status === "sending" ? '...' : e(AnimText, null, t.contact.form.submit)
+            ),
+            status === "success" && e('p', { className: 'text-green-400 text-xs text-center font-mono mt-4' }, '✓ Mesaj iletildi.')
+          )
+        )
+      );
+    }
+
+    function ChatWidget() {
+      const { t } = useContext(LangContext);
+      const [isOpen, setIsOpen] = useState(false);
+      const [messages, setMessages] = useState([{ role: 'ai', text: t.chat.welcome }]);
+      const [input, setInput] = useState("");
+
+      const handleSend = (ev) => {
+        ev.preventDefault();
+        if (!input.trim()) return;
+        const newMsgs = [...messages, { role: 'user', text: input }];
+        setMessages(newMsgs);
+        setInput("");
+        setTimeout(() => {
+          setMessages([...newMsgs, { role: 'ai', text: "Atomik veri ağımız mesajınızı işliyor. Ekiplerimiz en kısa sürede dönecektir." }]);
+        }, 1200);
+      };
+
+      return e('div', { className: 'fixed bottom-8 right-8 z-50' },
+        isOpen && e('div', { className: 'glass w-80 md:w-96 rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-4 animate-fade-up' },
+          e('div', { className: 'bg-white/5 p-4 border-b border-white/10 flex items-center justify-between' },
+            e('div', { className: 'flex items-center gap-3' },
+              e('img', { src: LOGO_SRC, alt: 'AI', className: 'w-7 h-7 rounded-full object-cover animate-spin-slow' }),
+              e('span', { className: 'font-bold text-sm tracking-tight' }, e(AnimText, null, t.chat.title))
+            ),
+            e('button', { onClick: () => setIsOpen(false), className: 'text-nova-muted hover:text-white cursor-pointer' }, '✕')
+          ),
+          e('div', { className: 'p-4 h-72 overflow-y-auto space-y-4 text-xs font-light leading-relaxed' },
+            messages.map((m, i) => e('div', { key: i, className: 'flex ' + (m.role === 'user' ? 'justify-end' : 'justify-start') },
+              e('div', { className: 'p-3.5 rounded-xl max-w-[85%] ' + (m.role === 'user' ? 'bg-nova-cyan/15 border border-nova-cyan/30 text-white' : 'bg-white/10 text-nova-muted') }, m.text)
+            ))
+          ),
+          e('form', { onSubmit: handleSend, className: 'p-3 border-t border-white/10 flex gap-2 bg-nova-bg' },
+            e('input', {
+              type: 'text',
+              value: input,
+              onChange: (ev) => setInput(ev.target.value),
+              placeholder: 'Mesajınızı yazın...',
+              className: 'flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-xs text-white focus:outline-none focus:border-nova-cyan'
+            }),
+            e('button', { type: 'submit', className: 'btn-neon px-4 py-2.5 rounded-lg text-xs font-bold text-white cursor-pointer' }, '➤')
+          )
+        ),
+        e('button', {
+          onClick: () => setIsOpen(!isOpen),
+          className: 'btn-neon p-5 rounded-full flex items-center justify-center shadow-lg text-xl cursor-pointer group'
+        }, e('img', { src: LOGO_SRC, className: 'w-6 h-6 rounded-full object-cover group-hover:scale-110 transition-transform' }))
+      );
+    }
+
+    function Footer() {
+      const { t } = useContext(LangContext);
+      return e('footer', { className: 'py-10 px-6 border-t border-white/5 text-center text-[10px] font-mono text-nova-dim tracking-wider uppercase fade-in' },
+        e('img', { src: LOGO_SRC, className: 'w-6 h-6 rounded-full mx-auto mb-4 opacity-30 object-cover' }),
+        e('p', null, e(AnimText, null, t.footer.copyright))
+      );
+    }
+
+    function App() {
+      const [lang, setLang] = useState('tr');
+      const t = translations[lang];
+
+      useEffect(() => {
+        initParticles();
+        initInertiaScroll();
+      }, []);
+
+      return e(LangContext.Provider, { value: { lang, setLang, t } },
+        e('div', { className: 'min-h-screen bg-nova-bg text-white relative' },
+          e(Header),
+          e('main', null,
+            e(Hero),
+            e(MarqueeBanner),
+            e(Contact)
+          ),
+          e(Footer),
+          e(ChatWidget)
+        )
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(e(App));
+  </script>
+</body>
 </html>
-

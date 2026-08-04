@@ -3,7 +3,7 @@
  
 
 
-![Header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=220&section=header&text=Hoş%20Geldiniz&fontSize=50&animation=fadeIn)
+![Header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=220&section=header&text=Nova-AI%20Hoş-Geldiniz&fontSize=50&animation=fadeIn)
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&pause=1000&color=F75C7E&center=true&vCenter=true&width=435&lines=Nova-Studio+Software;Nova-AI+%26+Creator;Nova-AI+Creator)](https://git.io/typing-svg)
 

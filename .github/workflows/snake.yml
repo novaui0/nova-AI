@@ -1,18 +1,13 @@
-
 name: Generate Snake
 
 on:
   schedule:
-    # Her 24 saatte bir otomatik çalışır
     - cron: "0 0 * * *"
-  
-  # Manuel tetiklemeye izin verir
   workflow_dispatch:
-  
-  # Profil reponuza push yapıldığında çalışır
   push:
     branches:
     - main
+    - master
 
 jobs:
   generate:
@@ -22,7 +17,6 @@ jobs:
     timeout-minutes: 5
     
     steps:
-      # Yılan animasyonunu oluşturan adım
       - name: generate-github-user-contribution-grid-snake
         uses: Platane/snk/svg-only@v3
         with:
@@ -33,7 +27,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-      # Oluşan SVG dosyalarını output dalına (branch) gönderen adım
       - name: push github-contribution-grid-snake.svg to the output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:

@@ -3,7 +3,7 @@
 
 
  
-![Snake animation](https://raw.githubusercontent.com/novaui0/novaui0/output/github-contribution-grid-snake.svg)
+![Snake animation](https://raw.githubusercontent.com/novaui0/nova-ai/output/github-contribution-grid-snake.svg)
 
 
 ![Header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=220&section=header&text=Nova-AI%20Hoş-Geldiniz&fontSize=50&animation=fadeIn)

@@ -23,41 +23,41 @@
 
 ---
 ## ➕ En Son Eklenenler
-# Nova-AI v1.0.5 Sürüm Notları
+# Nova-AI v1.6.1 Sürüm Notları
 
-Nova-AI v1.0.5 - Arayüz ve Kullanıcı Deneyimi Güncellemesi
+Nova-AI v1.6.1 - Arayüz ve Kullanıcı Deneyimi Güncellemesi
 Bu sürüm, Nova-AI'nin kullanıcı deneyimini ve arayüzünü temelden iyileştiren bir dizi heyecan verici yeni özellik, performans artışı ve hata düzeltmesi içeriyor. Artık daha akıllı, daha hızlı ve daha kişisel bir yapay zeka asistanınız var!
 
 #**✨ Yeni Özellikler**#
 
-🤖Android Bu Sürümde Destekleniyor!
+Ana Sayfa
+Ana sayfanın tasarımını güncelledik.
+Ana sayfadaki metinleri ve görselleri düzenledik.
+Ana sayfadaki bağlantıları güncelledik.
 
-🎯 Gelişmiş Plan Modu: Plan Modu artık sizi odaklanmaya teşvik eden tam ekran, şık bir arayüzle geliyor. Hedefinizi girin, "Planlamayı Başlat" butonuna tıklayın ve Nova'nın size adım adım yol göstermesini izleyin. Mod, özel ses efektleriyle daha da etkileşimli hale getirildi.
+Hesaplar
+Hesaplar sayfasının tasarımını güncelledik.
+Hesaplar sayfasındaki tabloyu düzenledik.
+Hesaplar sayfasındaki bağlantıları güncelledik.
 
-📋 Kod Blokları için "Kopyala" Butonu: Artık Nova'nın verdiği kod bloklarının sağ üst köşesinde bir "Kopyala" butonu bulunuyor. Tek tıkla kodu panoya alın ve hoş bir ses efektiyle işlemin tamamlandığını duyun!
+Hesap Ekle
+Hesap ekleme formunu güncelledik.
+Hesap ekleme formundaki alanları düzenledik.
+Hesap ekleme formundaki doğrulama işlemlerini güncelledik.
+Hesap Sil
 
-↕️ Sürükle-Bırak ile Sohbet Sıralama: Kenar çubuğundaki sohbetlerinizi artık fare ile tutup sürükleyerek kolayca yeniden sıralayabilirsiniz. Düzeniniz, uygulama yeniden başlatıldığında bile korunur.
+Hesap silme işlemini güncelledik.
+Hesap silme işleminde hata ayıklama mesajlarını güncelledik.
+Hesap Düzenle
 
-👤 Gelişmiş Profil Yönetimi: Kullanıcı seçim ekranı artık çok daha işlevsel:
-Düzenle & Sil: Profil kartlarının üzerine gelerek adınızı düzenleyebilir veya profilinizi silebilirsiniz.
-Son Giriş Bilgisi: Her profil kartında artık o profile en son ne zaman giriş yapıldığı görünüyor.
-Akıllı Sıralama: Profiller, en son giriş yapılan tarihe göre otomatik olarak sıralanır.
+Hesap düzenleme işlemini güncelledik.
+Hesap düzenleme işlemindeki alanları düzenledik.
+Hesap düzenleme işlemindeki doğrulama işlemlerini güncelledik.
+Veritabanı
 
-💡 Günün İpucu & Yenilikler:
-Uygulama her açıldığında, size faydalı bilgiler sunan rastgele bir "Günün İpucu" penceresi gösterilir. İstemiyorsanız "Bir daha gösterme" seçeneğini işaretleyebilirsiniz.
-Uygulama güncellendiğinde, sizi yeni eklenen özellikler hakkında bilgilendiren bir "Yenilikler" penceresi karşılar.
-
-📅 Sohbet Listesine Tarih Eklendi: Artık her sohbetin yanında, o sohbetin oluşturulduğu tarihi gösteren küçük bir etiket bulunuyor.
-
-🎨 "Temayı Sıfırla" Butonu: Ayarlar menüsüne, tema ayarlarınızı kolayca varsayılan duruma döndürmenizi sağlayan bir buton eklendi.
-
-🐞 Hata Düzeltmeleri ve İyileştirmeler
-Mesajların Görünmemesi Sorunu Düzeltildi: Nova'nın yanıtlarının bazen görünmemesine neden olan API model uyumsuzluğu giderildi. Artık mesajlar güvenilir bir şekilde görüntüleniyor.
-Giriş Kutusunun Temizlenmemesi Sorunu Düzeltildi: Mesaj gönderdikten sonra metnin giriş kutusunda kalmasına neden olan hata düzeltildi.
-
-Daha İnce ve Zarif Logo: Açılış ekranındaki ve kenar çubuğundaki uygulama logosu, daha modern bir görünüm için inceltildi.
-Giriş Ekranı Animasyonları: Kullanıcı seçim ve giriş ekranlarındaki animasyonlar daha akıcı ve estetik hale getirildi.
-Genel Performans ve Stabilite: Arayüz genelinde çeşitli performans iyileştirmeleri ve küçük hata düzeltmeleri yapıldı.
+Veritabanı tablolarını güncelledik.
+Hesap tablosundaki alanları düzenledik.
+Hesap tablosundaki doğrulama işlemlerini güncelledik.
 
 ## ✨ Özellikler
 

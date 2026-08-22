@@ -18,7 +18,7 @@
 
 **Nova-AI**,Electron ile oluşturulmuş modern ve zengin özelliklere sahip bir yapay zeka sohbet asistanıdır.
 
-[![Sürüm](https://img.shields.io/badge/en_son_sürüm-v1.6.0-mintgreen.svg)](https://github.com/novaui0/nova-ai/releases)
+[![Sürüm](https://img.shields.io/badge/en_son_sürüm-v1.6.1-mintgreen.svg)](https://github.com/novaui0/nova-ai/releases)
 [![Lisans](https://img.shields.io/badge/lisans-MIT-green.svg)](LICENSE)
 
 ---

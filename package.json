@@ -1,6 +1,6 @@
 {
   "name": "nova-ai",
-  "version": "1.0.1",
+  "version": "1.6.5",
   "main": "main.js",
   "scripts": {
     "start": "electron .",

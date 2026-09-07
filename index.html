@@ -1,295 +1,459 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nova AI - Geleceğin Yapay Zeka Çözümleri</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'nova-bg': '#050609',
-            'nova-cyan': '#00F0FF',
-            'nova-purple': '#A04BFF',
-            'nova-muted': '#A1A7B3',
-            'nova-dim': '#4A5668',
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Plus Jakarta Sans', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-          animation: {
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'float': 'float 6s ease-in-out infinite',
-            'spin-slow': 'spin 20s linear infinite',
-            'marquee': 'marquee 62.5s linear infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-              '50%': { transform: 'translateY(-20px) rotate(2deg)' },
-            },
-            marquee: {
-              '0%': { transform: 'translateX(0%)' },
-              '100%': { transform: 'translateX(-50%)' }
-            }
-          }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Nova AI — işinizi değil, sisteminizi büyütün."
+    />
+    <title>Nova AI — Yapay Zeka Çalışma Katmanı</title>
+    <style>
+      :root {
+        --bg: #080a16;
+        --panel: rgba(20, 25, 53, 0.72);
+        --text: #f1f4ff;
+        --muted: #9ba5c2;
+        --line: rgba(161, 181, 255, 0.16);
+        --cyan: #6feaff;
+        --violet: #ab9bff;
+        --pink: #e49be9;
+        --green: #a4e8c4;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        min-width: 320px;
+        overflow-x: hidden;
+        color: var(--text);
+        background:
+          radial-gradient(ellipse 70% 42% at 58% -10%, rgba(38, 196, 255, .13), transparent 65%),
+          radial-gradient(ellipse 48% 35% at 100% 54%, rgba(139, 99, 245, .12), transparent 70%),
+          var(--bg);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      a { color: inherit; text-decoration: none; }
+      button, input, textarea { font: inherit; }
+      button { cursor: pointer; }
+      .container { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+      .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+      .gradient {
+        color: transparent;
+        background: linear-gradient(105deg, var(--cyan), var(--violet) 50%, var(--pink));
+        background-clip: text;
+        -webkit-background-clip: text;
+      }
+      .topbar {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 20;
+        height: 80px;
+        border-bottom: 1px solid rgba(161, 181, 255, .1);
+        background: rgba(8, 10, 22, .78);
+        backdrop-filter: blur(20px);
+      }
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        gap: 16px;
+      }
+      .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -.06em; }
+      .brand-mark, .logo-slot-fallback {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+      }
+      .brand-mark::before, .brand-mark::after, .logo-slot-fallback::before, .logo-slot-fallback::after {
+        position: absolute;
+        content: "";
+        border: 1.5px solid var(--cyan);
+        transform: rotate(45deg);
+      }
+      .brand-mark::before, .logo-slot-fallback::before { width: 17px; height: 17px; border-radius: 6px 2px; }
+      .brand-mark::after, .logo-slot-fallback::after { width: 7px; height: 7px; border-color: var(--pink); border-radius: 2px; }
+      .nav { display: flex; align-items: center; gap: 30px; color: #98a0bb; font-size: 12px; }
+      .nav a:hover { color: var(--text); }
+      .actions { display: flex; align-items: center; gap: 10px; }
+      .lang { display: inline-flex; padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: rgba(29, 34, 61, .42); }
+      .lang button {
+        padding: 7px 9px;
+        border: 0;
+        border-radius: 999px;
+        color: #8490af;
+        background: transparent;
+        font: 500 10px monospace;
+      }
+      .lang button.active { color: var(--cyan); background: rgba(111, 234, 255, .14); }
+      .logo-slot {
+        display: grid;
+        place-items: center;
+        width: 35px;
+        height: 35px;
+        overflow: hidden;
+        border: 1px solid rgba(111, 234, 255, .32);
+        border-radius: 10px;
+        background: rgba(111, 234, 255, .07);
+      }
+      .logo-slot img { width: 100%; height: 100%; object-fit: cover; }
+      .logo-slot .logo-slot-fallback { transform: scale(.76); }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 13px 18px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        color: #07111b;
+        background: var(--cyan);
+        font-size: 12px;
+        font-weight: 800;
+        transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+      }
+      .button:hover { transform: translateY(-2px); background: #9bf0ff; box-shadow: 0 10px 28px rgba(38, 206, 242, .18); }
+      .button.small { padding: 10px 14px; font-size: 11px; white-space: nowrap; }
+      .button.ghost { color: var(--text); border-color: rgba(176, 189, 255, .24); background: rgba(17, 21, 45, .5); }
+      .hero { position: relative; min-height: 860px; padding: 180px 0 96px; }
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        opacity: .28;
+        background-image: linear-gradient(rgba(117, 152, 211, .07) 1px, transparent 1px), linear-gradient(90deg, rgba(117, 152, 211, .07) 1px, transparent 1px);
+        background-size: 80px 80px;
+        mask-image: linear-gradient(to bottom, black, transparent 72%);
+      }
+      .orb {
+        position: absolute;
+        top: 110px;
+        right: -80px;
+        width: 580px;
+        height: 580px;
+        border-radius: 50%;
+        opacity: .85;
+        background: radial-gradient(circle at 32% 28%, rgba(112, 233, 255, .18), transparent 21%), radial-gradient(circle at 60% 56%, rgba(119, 100, 243, .22), transparent 48%), transparent 64%;
+      }
+      .orb::before {
+        position: absolute;
+        inset: 64px;
+        content: "";
+        border: 1px solid rgba(113, 232, 255, .15);
+        border-radius: 50%;
+        box-shadow: 0 0 90px rgba(105, 151, 255, .16), inset 0 0 80px rgba(145, 81, 244, .13);
+        animation: pulse 6s ease-in-out infinite;
+      }
+      .hero-content { position: relative; z-index: 1; max-width: 790px; }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 7px 11px;
+        border: 1px solid rgba(111, 234, 255, .2);
+        border-radius: 999px;
+        color: #b5d9e4;
+        background: rgba(17, 49, 67, .23);
+        font: 500 10px monospace;
+        letter-spacing: .08em;
+      }
+      .status i { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); }
+      h1, h2, h3 { margin-top: 0; }
+      h1 {
+        max-width: 850px;
+        margin-bottom: 26px;
+        font-size: clamp(52px, 8vw, 102px);
+        line-height: .94;
+        letter-spacing: -.095em;
+      }
+      .hero-copy { max-width: 530px; color: var(--muted); font-size: 16px; line-height: 1.7; }
+      .hero-buttons { display: flex; gap: 12px; margin-top: 34px; }
+      .hero-foot { display: flex; gap: 19px; margin-top: 54px; color: #75809f; font-size: 11px; }
+      .hero-foot span { display: inline-flex; align-items: center; gap: 7px; }
+      .hero-foot b { color: #d3d8ea; }
+      .trust { padding: 34px 0; border-top: 1px solid rgba(111, 234, 255, .18); border-bottom: 1px solid rgba(111, 234, 255, .1); color: #64708d; font: 600 11px monospace; letter-spacing: .1em; text-transform: uppercase; }
+      .trust-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+      section { padding: 132px 0; }
+      .eyebrow { color: var(--cyan); font: 500 11px monospace; letter-spacing: .17em; text-transform: uppercase; }
+      .heading { max-width: 760px; margin-bottom: 58px; }
+      h2 { margin: 18px 0 0; font-size: clamp(37px, 5vw, 64px); line-height: 1.02; letter-spacing: -.075em; }
+      .heading p, .contact-copy { max-width: 560px; color: #929bb8; font-size: 15px; line-height: 1.75; }
+      .cards { display: grid; grid-template-columns: 1.15fr .85fr .85fr; gap: 14px; }
+      .card {
+        position: relative;
+        min-height: 202px;
+        padding: 27px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: linear-gradient(145deg, rgba(35, 42, 79, .62), rgba(16, 19, 41, .55));
+      }
+      .card:hover { border-color: rgba(111, 234, 255, .38); transform: translateY(-4px); transition: transform .3s ease, border-color .3s ease; }
+      .card.tall { grid-row: span 2; min-height: 430px; }
+      .card.wide { grid-column: span 2; }
+      .icon { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid rgba(111, 234, 255, .35); border-radius: 11px; color: var(--cyan); }
+      .card h3 { margin: 35px 0 12px; font-size: 18px; }
+      .card.tall h3 { margin-top: 56px; }
+      .card p { color: #8993b0; font-size: 13px; line-height: 1.7; }
+      .code { position: absolute; right: 27px; bottom: 25px; left: 27px; color: #7bd9ea; font: 11px/1.9 monospace; opacity: .67; }
+      .demo { background: linear-gradient(180deg, transparent, rgba(38, 38, 88, .18), transparent); }
+      .demo-shell { display: grid; grid-template-columns: 1.1fr .9fr; overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: var(--panel); }
+      .demo-copy { padding: 52px; border-right: 1px solid rgba(157, 174, 232, .12); }
+      .demo-copy h2 { margin-bottom: 20px; }
+      .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; }
+      .tab { padding: 9px 11px; border: 1px solid var(--line); border-radius: 8px; color: #7f89a8; background: transparent; font: 10px monospace; }
+      .tab.active, .tab:hover { border-color: rgba(111, 234, 255, .48); color: var(--cyan); background: rgba(111, 234, 255, .1); }
+      .result { margin-top: 30px; padding: 17px; border-left: 2px solid var(--cyan); color: #cbd0e1; background: rgba(111, 234, 255, .045); font-size: 13px; line-height: 1.65; }
+      .console { margin: 28px; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: #0b0e1e; }
+      .console-head { display: flex; justify-content: space-between; padding: 13px 16px; border-bottom: 1px solid var(--line); color: #717b9b; font: 10px monospace; }
+      .console-body { min-height: 385px; padding: 23px 20px; color: #697493; font: 11px/2 monospace; }
+      .cyan { color: var(--cyan); } .violet { color: #d6a1eb; } .green { color: var(--green); }
+      .process { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .step { min-height: 225px; padding: 28px 24px 26px 0; margin-right: 24px; border-right: 1px solid var(--line); }
+      .step:last-child { margin-right: 0; border-right: 0; }
+      .step-number { color: #65708f; font: 11px monospace; }
+      .step h3 { margin: 42px 0 10px; font-size: 17px; }
+      .step p { color: #858faa; font-size: 12px; line-height: 1.65; }
+      .contact { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; }
+      .form { padding: 30px; border: 1px solid var(--line); border-radius: 20px; background: rgba(23, 26, 54, .61); }
+      .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 17px; }
+      .field label { color: #8b96b3; font: 10px monospace; letter-spacing: .08em; text-transform: uppercase; }
+      .field input, .field textarea { width: 100%; padding: 13px 14px; border: 1px solid var(--line); border-radius: 10px; outline: none; color: var(--text); background: rgba(7, 10, 24, .5); font-size: 13px; }
+      .field textarea { min-height: 108px; resize: vertical; }
+      .field input:focus, .field textarea:focus { border-color: rgba(111, 234, 255, .65); box-shadow: 0 0 0 3px rgba(111, 234, 255, .08); }
+      .success { display: none; padding: 14px; border-radius: 10px; color: var(--green); background: rgba(84, 217, 164, .1); font-size: 12px; }
+      .success.show { display: block; }
+      footer { padding: 26px 0 38px; border-top: 1px solid var(--line); color: #65708c; font: 10px monospace; }
+      .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+      .footer-links { display: flex; gap: 22px; }
+      .footer-links a:hover { color: var(--cyan); }
+      @keyframes pulse { 0%, 100% { transform: scale(1); opacity: .65; } 50% { transform: scale(1.05); opacity: 1; } }
+      @media (max-width: 850px) {
+        .nav { display: none; }
+        .topbar-inner { justify-content: space-between; }
+        .button.demo-button { display: none; }
+        .hero { min-height: 790px; }
+        .orb { width: 440px; height: 440px; right: -150px; top: 230px; opacity: .65; }
+        .cards, .demo-shell, .contact { grid-template-columns: 1fr; }
+        .card.tall { min-height: 350px; }
+        .card.wide { grid-column: auto; }
+        .demo-copy { border-right: 0; border-bottom: 1px solid var(--line); padding: 36px 28px; }
+        .process { grid-template-columns: 1fr 1fr; }
+        .step:nth-child(2) { margin-right: 0; border-right: 0; }
+        .step:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      }
+      @media (max-width: 560px) {
+        .container { width: calc(100% - 32px); }
+        .topbar { height: 68px; }
+        .actions { gap: 6px; }
+        .button.download-button { padding: 10px 11px; font-size: 10px; }
+        .button.download-button svg { display: none; }
+        .hero { min-height: 730px; padding-top: 132px; }
+        h1 { font-size: 54px; }
+        .hero-buttons { align-items: stretch; flex-direction: column; max-width: 230px; }
+        .hero-foot { align-items: flex-start; flex-direction: column; gap: 8px; }
+        section { padding: 88px 0; }
+        h2 { font-size: 40px; }
+        .form-row { grid-template-columns: 1fr; gap: 0; }
+        .process { grid-template-columns: 1fr; }
+        .step, .step:nth-child(2) { min-height: auto; margin: 0; padding: 23px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+        .step:last-child { border-bottom: 0; }
+        .footer-inner { align-items: flex-start; flex-direction: column; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="#top"><span class="brand-mark"></span>nova<span class="gradient">/</span>ai</a>
+        <nav class="nav">
+          <a href="#platform">Platform</a>
+          <a href="#demo">Canlı demo</a>
+          <a href="#security">Güvenlik</a>
+          <a href="#contact">İletişim</a>
+        </nav>
+        <div class="actions">
+          <div class="lang" aria-label="Dil seçimi">
+            <button class="active" data-lang="tr">TR</button>
+            <button data-lang="en">EN</button>
+          </div>
+          <a class="logo-slot" href="#top" title="novalogo.png">
+            <img src="novalogo.png" alt="Nova AI logo" onerror="this.remove(); this.parentElement.insertAdjacentHTML('beforeend', '<span class=&quot;logo-slot-fallback&quot;></span>')" />
+          </a>
+          <button class="button small download-button" id="download-button">
+            <span>↓</span><span id="download-label">Nova AI indir</span>
+          </button>
+          <a class="button small demo-button" href="#contact">Demo iste ↗</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-grid"></div>
+        <div class="orb"></div>
+        <div class="container hero-content">
+          <div class="status"><i></i><span data-tr="Yeni nesil iş akışları için hazır" data-en="Ready for the next era of work">Yeni nesil iş akışları için hazır</span></div>
+          <h1>İşinizi değil,<br /><span class="gradient">sisteminizi</span><br />büyütün.</h1>
+          <p class="hero-copy" data-tr="Nova, ekibinizin her gün tekrarladığı işleri anlayan, bağlamı koruyan ve doğru anda harekete geçen yapay zekâ çalışma katmanıdır." data-en="Nova is the intelligent work layer that understands recurring work, keeps context intact, and takes the right action at the right time.">Nova, ekibinizin her gün tekrarladığı işleri anlayan, bağlamı koruyan ve doğru anda harekete geçen yapay zekâ çalışma katmanıdır.</p>
+          <div class="hero-buttons">
+            <a class="button" href="#demo">Nova’yı keşfet ↗</a>
+            <a class="button ghost" href="#platform">Nasıl çalışır ›</a>
+          </div>
+          <div class="hero-foot"><span>✓ <b>ISO 27001</b> ready</span><span>✓ <b>Private by design</b></span></div>
+        </div>
+      </section>
+
+      <div class="container trust">
+        <div class="trust-row"><span>İleriye bakan ekipler Nova ile çalışıyor</span><span>ORBITAL</span><span>MONOLITH</span><span>R/FORM</span><span>KALEIDO</span></div>
+      </div>
+
+      <section class="container" id="platform">
+        <div class="heading">
+          <div class="eyebrow">Platform / 01</div>
+          <h2>Dağınık araçları <span class="gradient">tek bir zekâda</span> birleştirin.</h2>
+          <p>Nova yalnızca komutları çalıştırmaz. Veriyi okur, niyeti anlar, kararları görünür kılar ve ekibinizin ritmine uyum sağlar.</p>
+        </div>
+        <div class="cards">
+          <article class="card tall"><div class="icon">✦</div><h3>Akışları otomatikleştir</h3><p>Tekrarlanan adımları, onayları ve geçişleri Nova’nın güvenilir ajanlarına bırakın.</p><div class="code">trigger → reason → deliver</div></article>
+          <article class="card"><div class="icon">◈</div><h3>Bağlamı kaybetme</h3><p>Dokümanlar, CRM kayıtları ve ekip hafızası tek, aranabilir bir katmanda.</p><div class="code">context.load("entire-team")</div></article>
+          <article class="card"><div class="icon">◇</div><h3>Kontrol sizde</h3><p>Her aksiyon izlenebilir. Yetki sınırları net, sonuçlar ölçülebilir.</p><div class="code">policy: human-in-loop</div></article>
+          <article class="card wide"><div class="icon">↗</div><h3>Sinyalden ivmeye.</h3><p>Nova gürültüyü temizler ve ekibiniz için sıradaki doğru adımı görünür kılar.</p></article>
+        </div>
+      </section>
+
+      <section class="demo" id="demo">
+        <div class="container">
+          <div class="demo-shell">
+            <div class="demo-copy">
+              <div class="eyebrow">Canlı çalışma alanı / 02</div>
+              <h2>Bir fikri<br /><span class="gradient">sonuca</span> taşıyın.</h2>
+              <p class="heading">Nova’ya neye ihtiyacınız olduğunu söyleyin. O planlar, araçları bağlar ve size kanıtlanabilir bir çıktı bırakır.</p>
+              <div class="tabs">
+                <button class="tab active" data-task="Araştır">Araştır</button>
+                <button class="tab" data-task="Özetle">Özetle</button>
+                <button class="tab" data-task="Otomatikleştir">Otomatikleştir</button>
+              </div>
+              <div class="result" id="result">Nova, 12 kaynaktan içgörüleri topladı ve yönetici özeti için ilk taslağı hazırladı.</div>
+            </div>
+            <div class="console">
+              <div class="console-head"><span>nova / agent-runtime</span><span>● live</span></div>
+              <div class="console-body">
+                <div>$ nova <span class="cyan">run</span> <span class="violet" id="prompt">"Rakip hareketlerini analiz et"</span></div><br />
+                <div>→ parsing intent...</div>
+                <div>→ selecting tools: <span class="cyan">search, memory, synthesize</span></div>
+                <div>→ checking policy boundaries...</div><br />
+                <div class="green">✓ plan ready</div>
+                <div class="green">✓ 12 sources connected</div>
+                <div class="green">✓ output compiled</div><br />
+                <button class="button small" id="run-demo">▶ Çalıştır</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container" id="security">
+        <div class="heading">
+          <div class="eyebrow">Güvenlik / 03</div>
+          <h2>Zekâ hızlanır.<br /><span class="gradient">Sorumluluk</span> sabit kalır.</h2>
+          <p>Nova, önemli kararları görünmez bir kutuya saklamaz. İzinler, kaynaklar ve her aksiyonun izi ekiplerin kontrolünde kalır.</p>
+        </div>
+        <div class="process">
+          <article class="step"><div class="step-number">01</div><h3>Bağlan</h3><p>Ekibinizin kullandığı araçları güvenli bir katmanda bir araya getirin.</p></article>
+          <article class="step"><div class="step-number">02</div><h3>Tanımla</h3><p>Nova’ya hedefi, sınırları ve başarı ölçütünü anlatın.</p></article>
+          <article class="step"><div class="step-number">03</div><h3>Çalıştır</h3><p>Ajanlar görevleri planlar, böler ve doğru araçla yürütür.</p></article>
+          <article class="step"><div class="step-number">04</div><h3>Öğren</h3><p>Her sonuç ekibin daha iyi karar vermesi için yeni bir sinyal olur.</p></article>
+        </div>
+      </section>
+
+      <section class="container" id="contact">
+        <div class="contact">
+          <div>
+            <div class="eyebrow">Bize ulaşın / 04</div>
+            <h2>Bir sonraki<br /><span class="gradient">hamleniz</span> ne?</h2>
+            <p class="contact-copy">Nova’yı ekibinizin gerçek bir iş akışında görün. Kısa bir not bırakın; size özel bir akışla dönelim.</p>
+          </div>
+          <form class="form" id="contact-form">
+            <div id="success" class="success">Mesajınız alındı. Nova ekibi en kısa sürede size ulaşacak.</div>
+            <div id="form-fields">
+              <div class="form-row">
+                <div class="field"><label for="name">Ad soyad</label><input id="name" required /></div>
+                <div class="field"><label for="email">İş e-postası</label><input id="email" type="email" required /></div>
+              </div>
+              <div class="field"><label for="message">Neyi çözmek istiyorsunuz?</label><textarea id="message" required></textarea></div>
+              <button class="button" type="submit">Konuşmayı başlat ↗</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div><a class="brand" href="#top"><span class="brand-mark"></span>nova<span class="gradient">/</span>ai</a><div style="margin-top: 12px;">Zekâ, işin yeni altyapısı.</div></div>
+        <div class="footer-links"><a href="#platform">Platform</a><a href="#security">Güvenlik</a><span>© 2026 Nova AI</span></div>
+      </div>
+    </footer>
+
+    <script>
+      const releaseApi = "https://api.github.com/repos/novaui0/nova-AI/releases/tags/Nova-AI-Version-1.6.4";
+      const fallbackExe = "https://github.com/novaui0/nova-AI/releases/download/Nova-AI-Version-1.6.4/NovaAI_Setup_v1.6.4.exe";
+
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const language = button.dataset.lang;
+          document.querySelectorAll("[data-lang]").forEach((item) => item.classList.toggle("active", item === button));
+          document.querySelectorAll("[data-tr][data-en]").forEach((item) => {
+            item.textContent = language === "en" ? item.dataset.en : item.dataset.tr;
+          });
+          document.getElementById("download-label").textContent = language === "en" ? "Download Nova AI" : "Nova AI indir";
+        });
+      });
+
+      document.getElementById("download-button").addEventListener("click", async () => {
+        const button = document.getElementById("download-button");
+        const label = document.getElementById("download-label");
+        label.textContent = "Hazırlanıyor…";
+        button.disabled = true;
+        try {
+          const response = await fetch(releaseApi, { headers: { Accept: "application/vnd.github+json" } });
+          if (!response.ok) throw new Error("Release not found");
+          const release = await response.json();
+          const exe = (release.assets || [])
+            .filter((asset) => asset.name.toLowerCase().endsWith(".exe"))
+            .sort((a, b) => (b.updated_at || "").localeCompare(a.updated_at || ""))[0];
+          window.location.assign(exe ? exe.browser_download_url : fallbackExe);
+        } catch {
+          window.location.assign(fallbackExe);
         }
-      }
-    }
-  </script>
+      });
 
-  <style>
-    body { background-color: #050609; color: #ffffff; overflow-x: hidden; font-family: 'Inter', sans-serif; }
-    .glass { background: rgba(10, 12, 18, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.06); }
-    .btn-neon { background: linear-gradient(135deg, rgba(0,240,255,0.2) 0%, rgba(160,75,255,0.2) 100%); border: 1px solid rgba(0, 240, 255, 0.5); box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); transition: all 0.3s ease; }
-    .btn-neon:hover { box-shadow: 0 0 30px rgba(0, 240, 255, 0.5); border-color: rgba(0, 240, 255, 0.9); transform: translateY(-2px); }
-    .text-gradient-neon { background: linear-gradient(135deg, #00F0FF 0%, #A04BFF 100%); background-clip: text; -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; color: #00F0FF; display: inline-block; filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.4)); }
-    #particle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.4; }
-    .marquee-container { width: 100vw; overflow: hidden; white-space: nowrap; user-select: none; pointer-events: none; opacity: 0.7; }
-    
-    /* Yumuşak Dil Geçiş Efekti */
-    .lang-fade { transition: opacity 0.2s ease-in-out; }
-    .lang-fading { opacity: 0.2; }
-  </style>
-</head>
-<body class="relative z-10">
-
-  <canvas id="particle-canvas"></canvas>
-
-  <!-- Header -->
-  <header class="fixed top-0 left-0 w-full z-50 glass border-b border-white/5 px-6 md:px-12 py-4 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <img src="novalogo.svg" alt="Nova AI" class="nova-logo-img w-9 h-9 rounded-full object-cover animate-spin-slow">
-      <span class="font-display font-extrabold text-2xl tracking-tighter text-white">NOVA<span class="text-nova-cyan">.AI</span></span>
-    </div>
-    
-    <nav class="hidden md:flex items-center gap-10 text-xs font-mono font-medium text-nova-muted uppercase tracking-widest">
-      <a href="#contact" class="hover:text-white transition-colors lang-fade" data-i18n="nav.services">Hizmetler</a>
-      <a href="#contact" class="hover:text-white transition-colors lang-fade" data-i18n="nav.why">Neden Biz</a>
-      <a href="#contact" class="hover:text-white transition-colors lang-fade" data-i18n="nav.contact">İletişim</a>
-    </nav>
-    
-    <div class="flex items-center gap-4">
-      <button id="lang-btn" class="text-[10px] font-mono px-3 py-1.5 rounded bg-white/5 border border-white/10 hover:border-nova-cyan transition-all uppercase cursor-pointer text-white">TR</button>
-      <a href="#contact" class="btn-neon px-6 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase text-white lang-fade" data-i18n="nav.cta">Başlayın</a>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="min-h-screen pt-32 pb-20 px-6 md:px-12 grid md:grid-cols-[1fr,auto] gap-12 items-center relative overflow-hidden">
-    <div class="relative z-10">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-nova-cyan/20 bg-nova-cyan/5 text-nova-cyan text-[10px] font-mono mb-6 tracking-widest animate-pulse-slow">
-        <span class="w-1.5 h-1.5 rounded-full bg-nova-cyan animate-pulse"></span>
-        <span class="lang-fade" data-i18n="hero.badge">ATOMİK GÜÇLÜ YAPAY ZEKA</span>
-      </div>
-      <div class="text-nova-muted font-mono text-xs uppercase tracking-widest mb-2 lang-fade" data-i18n="hero.overline">Nova AI Platformu</div>
-      
-      <h1 class="text-5xl md:text-7xl font-extrabold max-w-4xl font-display leading-[0.95] mb-6 tracking-tighter">
-        <span class="lang-fade" data-i18n="hero.title">İşletmenizin Geleceğini</span> 
-        <span class="text-gradient-neon mx-1 lang-fade" data-i18n="hero.aiText">Yapay Zeka</span> 
-        <span class="lang-fade" data-i18n="hero.titleEnd">İle İnşa Edin</span>
-      </h1>
-      
-      <p class="text-nova-muted max-w-xl text-base md:text-lg mb-10 leading-relaxed font-light lang-fade" data-i18n="hero.subtitle">
-        Nova AI, karmaşık veri süreçlerinizi atomik hassasiyetle otomatize eder ve akıllı asistanlar entegre ederek verimliliğinizi üst seviyeye taşır.
-      </p>
-      
-      <div class="flex flex-wrap gap-4 items-center">
-        <a href="#contact" class="btn-neon px-8 py-4 rounded-full font-bold text-sm tracking-wider uppercase text-white flex items-center justify-center">
-          <span class="lang-fade" data-i18n="nav.cta">Başlayın</span><span class="ml-2">→</span>
-        </a>
-        <a href="https://github.com/novaui0/nova-AI/releases/download/Nova-AI-Version-1.6.0/NovaAI_Setup_v1.6.0.exe" target="_blank" rel="noopener noreferrer" class="btn-neon px-8 py-4 rounded-full font-bold text-sm tracking-wider uppercase text-white flex items-center justify-center">
-          <span class="mr-2">⬇</span><span class="lang-fade" data-i18n="hero.downloadBtn">İndir</span>
-        </a>
-        <a href="https://github.com/novaui0/nova-AI/" target="_blank" rel="noopener noreferrer" class="btn-neon px-8 py-4 rounded-full font-bold text-sm tracking-wider uppercase text-white flex items-center justify-center">
-          <span class="lang-fade" data-i18n="hero.githubBtn">Siteye Git</span><span class="ml-2">↗</span>
-        </a>
-      </div>
-    </div>
-    
-    <!-- Hologram Pod & Logo -->
-    <div class="hidden md:block relative">
-      <div class="absolute -inset-10 bg-nova-cyan/10 blur-[100px] rounded-full opacity-50"></div>
-      <div class="glass p-10 rounded-full border border-nova-cyan/30 shadow-[0_0_60px_rgba(0,240,255,0.2)] animate-float">
-        <img src="novalogo.svg" alt="Nova Logo" class="nova-logo-img w-64 h-64 rounded-full object-cover">
-      </div>
-    </div>
-  </section>
-
-  <!-- Marquee Banner -->
-  <div class="marquee-container py-12 border-y border-white/5 bg-white/[0.01] my-10">
-    <div class="inline-block animate-marquee font-display font-extrabold text-5xl md:text-7xl uppercase tracking-widest text-gradient-neon">
-      • Geleceğin Yapay Zeka'sı • Akıllı Otomasyon • Atomik Hassasiyet • Sınırsız Potansiyel • Geleceğin Yapay Zeka'sı • Akıllı Otomasyon • Atomik Hassasiyet • Sınırsız Potansiyel
-    </div>
-  </div>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-    <div class="grid md:grid-cols-[1fr,minmax(400px,auto)] gap-16 items-start">
-      <div>
-        <span class="text-nova-cyan font-mono text-xs tracking-widest block mb-2 lang-fade" data-i18n="contact.overline">İLETİŞİME GEÇİN</span>
-        <h2 class="text-4xl md:text-5xl font-display font-bold mb-4 tracking-tight lang-fade" data-i18n="contact.title">Bir öneriniz mi var? İletişime Geçelim.</h2>
-        
-        <div class="glass p-6 rounded-2xl space-y-4 border border-white/5 mt-10 max-w-sm">
-          <h3 class="text-xs font-mono text-nova-dim tracking-wider uppercase lang-fade" data-i18n="contact.infoTitle">BİLGİLER</h3>
-          <p class="text-sm font-medium text-nova-cyan">📧 nova.studio.soft@gmail.com</p>
-        </div>
-      </div>
-      
-      <form id="contact-form" class="glass p-10 rounded-3xl space-y-7 border border-white/5 relative">
-        <div>
-          <label class="block text-xs font-mono text-nova-muted mb-2 uppercase tracking-tight lang-fade" data-i18n="contact.form.name">Adınız</label>
-          <input required type="text" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-sm text-white focus:outline-none focus:border-nova-cyan transition-all">
-        </div>
-        <div>
-          <label class="block text-xs font-mono text-nova-muted mb-2 uppercase tracking-tight">E-posta</label>
-          <input required type="email" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-sm text-white focus:outline-none focus:border-nova-cyan transition-all">
-        </div>
-        <div>
-          <label class="block text-xs font-mono text-nova-muted mb-2 uppercase tracking-tight lang-fade" data-i18n="contact.form.message">Mesajınız</label>
-          <textarea rows="4" required class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-sm text-white focus:outline-none focus:border-nova-cyan transition-all"></textarea>
-        </div>
-        <button type="submit" class="w-full btn-neon py-4 rounded-xl font-bold text-xs uppercase tracking-wider text-white cursor-pointer lang-fade" data-i18n="contact.form.submit">Gönder</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-10 px-6 border-t border-white/5 text-center text-[10px] font-mono text-nova-dim tracking-wider uppercase">
-    <img src="novalogo.svg" alt="Nova Logo" class="nova-logo-img w-6 h-6 mx-auto mb-4 opacity-30 rounded-full object-cover">
-    <p class="lang-fade" data-i18n="footer.copyright">© 2026 Nova AI. Tüm hakları saklıdır.</p>
-  </footer>
-
-  <script>
-    // 1. DİL SÖZLÜĞÜ
-    const translations = {
-      tr: {
-        "nav.services": "Hizmetler",
-        "nav.why": "Neden Biz",
-        "nav.contact": "İletişim",
-        "nav.cta": "Başlayın",
-        "hero.badge": "ATOMİK GÜÇLÜ YAPAY ZEKA",
-        "hero.overline": "Nova AI Platformu",
-        "hero.title": "İşletmenizin Geleceğini",
-        "hero.aiText": "Yapay Zeka",
-        "hero.titleEnd": "İle İnşa Edin",
-        "hero.subtitle": "Nova AI, karmaşık veri süreçlerinizi atomik hassasiyetle otomatize eder ve akıllı asistanlar entegre ederek verimliliğinizi üst seviyeye taşır.",
-        "hero.downloadBtn": "İndir",
-        "hero.githubBtn": "Siteye Git",
-        "contact.overline": "İLETİŞİME GEÇİN",
-        "contact.title": "Bir öneriniz mi var? İletişime Geçelim.",
-        "contact.infoTitle": "BİLGİLER",
-        "contact.form.name": "Adınız",
-        "contact.form.message": "Mesajınız",
-        "contact.form.submit": "Gönder",
-        "footer.copyright": "© 2026 Nova AI. Tüm hakları saklıdır."
-      },
-      en: {
-        "nav.services": "Services",
-        "nav.why": "Why Us",
-        "nav.contact": "Contact",
-        "nav.cta": "Get Started",
-        "hero.badge": "ATOMIC-POWERED AI",
-        "hero.overline": "Nova AI Platform",
-        "hero.title": "Build Your Business Future with",
-        "hero.aiText": "Artificial Intelligence",
-        "hero.titleEnd": "",
-        "hero.subtitle": "Nova AI automates complex data pipelines with atomic precision and integrates intelligent assistants to maximize your corporate performance.",
-        "hero.downloadBtn": "Download",
-        "hero.githubBtn": "Go to Site",
-        "contact.overline": "GET IN TOUCH",
-        "contact.title": "Do you have a suggestion? Let's connect.",
-        "contact.infoTitle": "INFO",
-        "contact.form.name": "Full Name",
-        "contact.form.message": "Message",
-        "contact.form.submit": "Send",
-        "footer.copyright": "© 2026 Nova AI. All rights reserved."
-      }
-    };
-
-    let currentLang = 'tr';
-
-    // Dil Değiştirme Fonksiyonu
-    function switchLanguage(targetLang) {
-      currentLang = targetLang;
-      const elements = document.querySelectorAll('[data-i18n]');
-      
-      elements.forEach(el => el.classList.add('lang-fading'));
-
-      setTimeout(() => {
-        elements.forEach(el => {
-          const key = el.getAttribute('data-i18n');
-          if (translations[currentLang][key] !== undefined) {
-            el.textContent = translations[currentLang][key];
-          }
-          el.classList.remove('lang-fading');
-        });
-        document.getElementById('lang-btn').textContent = currentLang.toUpperCase();
-      }, 150);
-    }
-
-    document.getElementById('lang-btn').addEventListener('click', () => {
-      switchLanguage(currentLang === 'tr' ? 'en' : 'tr');
-    });
-
-    // 2. LOGO KONTROLÜ VE YEDEK ELEMAN (FALLBACK)
-    // novalogo.svg dosyası aynı dizinde yoksa çökme olmaması için neon SVG basar
-    const fallbackLogoSVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' stroke='%2300F0FF' stroke-width='8' fill='none'/><circle cx='50' cy='50' r='25' fill='%23A04BFF'/></svg>";
-    
-    document.querySelectorAll('.novalogo-img').forEach(img => {
-      img.onerror = function() {
-        this.onerror = null;
-        this.src = fallbackLogoSVG;
+      const taskData = {
+        Araştır: ["Rakip hareketlerini analiz et", "12 kaynak tarandı. 3 kritik pazar sinyali ve 2 fiyatlandırma değişimi bulundu."],
+        Özetle: ["Bu haftayı ekibe özetle", "7 toplantı, 18 karar ve 4 bekleyen aksiyon tek bir ekip notuna dönüştürüldü."],
+        Otomatikleştir: ["Yeni müşteri akışı kur", "CRM, e-posta ve takvim bağlandı. İlk akış 4 dakikada yayına hazır."]
       };
-    });
-
-    // 3. PARTİKÜL ARKA PLAN EFEKTİ
-    const canvas = document.getElementById('particle-canvas');
-    if (canvas) {
-      const ctx = canvas.getContext('2d');
-      let width, height;
-
-      const resize = () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-      };
-      window.addEventListener('resize', resize);
-      resize();
-
-      let particles = Array.from({ length: 80 }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        size: Math.random() * 1.5 + 0.5,
-        speedX: Math.random() * 0.4 - 0.2,
-        speedY: Math.random() * 0.4 - 0.2,
-        color: Math.random() > 0.5 ? '#00F0FF' : '#A04BFF'
-      }));
-
-      function render() {
-        ctx.clearRect(0, 0, width, height);
-        particles.forEach(p => {
-          p.x += p.speedX; p.y += p.speedY;
-          if (p.x > width) p.x = 0; if (p.x < 0) p.x = width;
-          if (p.y > height) p.y = 0; if (p.y < 0) p.y = height;
-          
-          ctx.fillStyle = p.color;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fill();
+      document.querySelectorAll(".tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          document.querySelectorAll(".tab").forEach((item) => item.classList.remove("active"));
+          tab.classList.add("active");
+          document.getElementById("prompt").textContent = `"${taskData[tab.dataset.task][0]}"`;
+          document.getElementById("result").textContent = taskData[tab.dataset.task][1];
         });
-        requestAnimationFrame(render);
-      }
-      render();
-    }
-  </script>
-</body>
+      });
+      document.getElementById("run-demo").addEventListener("click", (event) => {
+        event.currentTarget.textContent = "✓ Tamamlandı";
+      });
+      document.getElementById("contact-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        document.getElementById("form-fields").style.display = "none";
+        document.getElementById("success").classList.add("show");
+      });
+    </script>
+  </body>
 </html>

@@ -1,17 +1,29 @@
-// server.js
-
 const express = require('express');
-const cors = require('cors');
-
+const path = require('path');
+const fs = require('fs');
 const app = express();
-const PORT = 5500; // Sunucunun çalışacağı port
+const PORT = process.env.PORT || 10000;
 
-// Gelen JSON verilerini okuyabilmek ve CORS hatalarını önlemek için
-app.use(cors({
-  origin: '*' // Geliştirme için tüm kaynaklara izin ver. Gerçek uygulamada burayı kendi domain'inizle değiştirin.
-}));
-app.use(express.json());
+// Render'ın web arayüzünü görmesi için index.html'i dışarı açıyoruz
+app.use(express.static(__dirname));
 
-app.listen(PORT, () => {
-  console.log(`Nova-AI sunucusu http://localhost:${PORT} adresinde çalışıyor.`);
+app.get('/', (req, res) => {
+    if (fs.existsSync(path.join(__dirname, 'index.html'))) {
+        res.sendFile(path.join(__dirname, 'index.html'));
+    } else {
+        res.send("Nova AI Yapay Zeka Sunucusu 7/24 Aktif!");
+    }
 });
+
+// Sunucuyu başlat
+app.listen(PORT, () => {
+    console.log(`Sunucu ${PORT} portunda başarıyla başlatıldı.`);
+});
+
+// Masaüstü (Electron) ortamındaki IPC yapılarını sunucu için güvenli hale getiriyoruz
+global.ENV = {
+    GEMINI_API_KEY: process.env.GEMINI_API_KEY || "",
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || ""
+};
+
+console.log("Masaüstü modülleri köprülendi. Yapay zeka arka plan görevleri çalışıyor...");

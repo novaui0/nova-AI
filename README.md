@@ -1,4 +1,4 @@
-# Nova-AI 🚀
+# Nova-AI 
 
 
 
@@ -18,14 +18,14 @@
 
 **Nova-AI**,Electron ile oluşturulmuş modern ve zengin özelliklere sahip bir yapay zeka sohbet asistanıdır.
 
-[![Sürüm](https://img.shields.io/badge/en_son_sürüm-v1.6.1-mintgreen.svg)](https://github.com/novaui0/nova-ai/releases)
+[![Sürüm](https://img.shields.io/badge/en_son_sürüm-v1.6.4-mintgreen.svg)](https://github.com/novaui0/nova-ai/releases)
 [![Lisans](https://img.shields.io/badge/lisans-MIT-green.svg)](LICENSE)
 
 ---
 ## ➕ En Son Eklenenler
-# Nova-AI v1.6.1 Sürüm Notları
+# Nova-AI v1.6.4 Sürüm Notları
 
-Nova-AI v1.6.1 - Arayüz ve Kullanıcı Deneyimi Güncellemesi
+Nova-AI v1.6.4 - Arayüz ve Kullanıcı Deneyimi Güncellemesi
 Bu sürüm, Nova-AI'nin kullanıcı deneyimini ve arayüzünü temelden iyileştiren bir dizi heyecan verici yeni özellik, performans artışı ve hata düzeltmesi içeriyor. Artık daha akıllı, daha hızlı ve daha kişisel bir yapay zeka asistanınız var!
 
 #**✨ Yeni Özellikler**#

@@ -1,0 +1,384 @@
+/* Nova-AI styles - components.css (extracted from original index.html) */
+
+    /* --- NOVA ADIM LİSTESİ (steps) --- */
+    .nova-steps-block {
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      max-width: 420px;
+    }
+    .nova-steps-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+    .nova-steps-toggle:hover { background: var(--hover-bg); }
+    .nova-steps-toggle .chevron {
+      margin-left: auto;
+      transition: transform 0.2s ease;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .nova-steps-block.open .nova-steps-toggle .chevron { transform: rotate(180deg); }
+    .nova-steps-list {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+      border-top: 1px solid transparent;
+    }
+    .nova-steps-block.open .nova-steps-list {
+      max-height: 600px;
+      border-top: 1px solid var(--border-color);
+    }
+    .nova-step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 14px;
+      position: relative;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .nova-step-item .step-icon {
+      width: 16px; height: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--primary-blue);
+    }
+    .nova-step-item:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 26px;
+      bottom: -2px;
+      width: 1px;
+      background: var(--border-color);
+    }
+
+    /* --- NOVA DOSYA KARTI (kod bloğu yerine geçer) --- */
+    .nova-file-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 8px 0;
+      max-width: 420px;
+    }
+    .nova-file-card .file-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: var(--hover-bg);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary-blue);
+      flex-shrink: 0;
+    }
+    .nova-file-card .file-meta { flex: 1; min-width: 0; }
+    .nova-file-card .file-name {
+      font-weight: 600; font-size: 0.9rem; color: var(--text-color);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .nova-file-card .file-sub { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+    .nova-file-card .file-download-btn {
+      border: 1px solid var(--border-color);
+      background: transparent;
+      color: var(--text-color);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .nova-file-card .file-download-btn:hover { background: var(--hover-bg); }
+
+    /* Nova'nın cevabı daktilo gibi kelime kelime yazılırken yanıp sönen imleç */
+    .typing-cursor::after {
+      content: '▍';
+      display: inline-block;
+      margin-left: 2px;
+      color: var(--primary-blue, #0b57d0);
+      animation: typing-cursor-blink 0.8s step-start infinite;
+    }
+    @keyframes typing-cursor-blink {
+      50% { opacity: 0; }
+    }
+
+    /* Arka planda hâlâ cevap üretilen sohbetler için sidebar'daki dönen gösterge */
+    .chat-item-spinner {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 2px solid rgba(11, 87, 208, 0.25);
+      border-top-color: var(--primary-blue, #0b57d0);
+      animation: chat-spinner-spin 0.7s linear infinite;
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+    @keyframes chat-spinner-spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes daily-bonus-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .msg img { max-width: 100%; border-radius: 12px; margin-top: 10px; }
+
+    /* Bot mesajlarının altındaki kopyala/beğen/beğenme aksiyon çubuğu */
+    .msg-actions-bar {
+      display: flex; align-items: center; gap: 4px;
+      margin-top: 8px;
+    }
+    .msg-action-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px;
+      border: none; border-radius: 8px;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .msg-action-btn:hover {
+      background: var(--sidebar-bg, rgba(0,0,0,0.06));
+      color: var(--text-color);
+    }
+    .msg-action-btn svg { width: 15px; height: 15px; }
+    .msg-action-btn.active-like {
+      color: var(--primary-blue, #0b57d0);
+    }
+    .msg-action-btn.active-like svg { fill: var(--primary-blue, #0b57d0); }
+    .msg-action-btn.active-dislike {
+      color: var(--danger-color, #d93025);
+    }
+    .msg-action-btn.active-dislike svg { fill: var(--danger-color, #d93025); }
+
+    /* ---------- KOD BALONU (Nova'nın yazdığı kodlar) ---------- */
+    .code-bubble {
+      background: #0d1117;
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 12px 0;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      max-width: 100%;
+    }
+    .code-bubble-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px;
+      background: #161b22;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .code-bubble-title {
+      color: #c9d1d9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: capitalize;
+      font-family: 'Consolas', 'Menlo', monospace;
+    }
+    .code-bubble-actions { display: flex; align-items: center; gap: 6px; }
+    .code-bubble-actions button {
+      display: flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px;
+      border: none; border-radius: 8px;
+      background: transparent;
+      color: #8b949e;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .code-bubble-actions button:hover {
+      background: rgba(255,255,255,0.08);
+      color: #e6edf3;
+    }
+    .code-bubble-actions button svg { width: 16px; height: 16px; }
+    .code-bubble pre {
+      margin: 0;
+      padding: 16px;
+      overflow-x: auto;
+      background: #0d1117;
+    }
+    .code-bubble pre code {
+      font-family: 'Consolas', 'Menlo', 'Courier New', monospace;
+      font-size: 0.87rem;
+      line-height: 1.55;
+      background: transparent;
+      white-space: pre;
+    }
+    .image-placeholder {
+      display: flex; justify-content: center; align-items: center;
+      width: 300px; height: 300px; background: var(--hover-bg);
+      border-radius: 16px; border: 1px dashed var(--border-color);
+      flex-direction: column; gap: 10px;
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    .download-btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 8px 16px;
+      background-color: var(--primary-blue);
+      color: white;
+      text-decoration: none;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+    .download-btn:hover { background-color: #0a4ab5; }
+
+    .input-container { width: 100%; max-width: 800px; margin: 0 auto 25px auto; padding: 0 20px; }
+    .gemini-input-bar {
+      background: var(--card-bg); border: 1.5px solid var(--border-color); border-radius: 26px;
+      padding: 6px 8px 6px 20px; display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05); position: relative;
+      transition: all 0.22s ease;
+    }
+    .gemini-input-bar:focus-within {
+      border-color: var(--primary-blue);
+      box-shadow: 0 10px 30px rgba(11, 87, 208, 0.12), 0 0 0 3px rgba(11, 87, 208, 0.1);
+    }
+    .gemini-input-bar textarea {
+      flex: 1; border: none; outline: none; background: transparent; padding: 8px 0;
+      resize: none; min-height: 24px; max-height: 200px; /* Otomatik büyüme için yükseklik ayarları */
+      font-size: 0.95rem; color: var(--text-color);
+      scrollbar-width: none; /* Firefox için kaydırma çubuğunu gizle */
+    }
+    .gemini-input-bar textarea::-webkit-scrollbar { display: none; /* Chrome, Safari, Opera için kaydırma çubuğunu gizle */ }
+
+    .icon-btn {
+      background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.2rem;
+      display: flex; align-items: center; justify-content: center; padding: 6px; border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+    .icon-btn:hover, .user-profile-settings-btn:hover { color: var(--primary-blue); background: var(--hover-bg); }
+    .icon-btn svg, .nav-item svg, .user-profile-settings-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2;
+    }
+    .send-btn {
+      background: linear-gradient(135deg, var(--primary-blue), #4f8cf6); color: #ffffff; padding: 10px; border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(11, 87, 208, 0.25); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .send-btn:hover {
+      transform: scale(1.08); box-shadow: 0 6px 18px rgba(11, 87, 208, 0.38);
+    }
+    .icon-btn.active {
+      background: var(--primary-blue); color: #ffffff; padding: 8px; border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(11, 87, 208, 0.25); transition: transform 0.2s ease;
+    }
+    /* Kod moduna geçiş anında yumuşak bir "yayılma" (soft pulse) efekti */
+    .code-mode-pulse {
+      animation: code-mode-soft-pulse 0.4s ease;
+    }
+    @keyframes code-mode-soft-pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(11, 87, 208, 0.35); }
+      50% { transform: scale(1.12); box-shadow: 0 0 0 8px rgba(11, 87, 208, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(11, 87, 208, 0); }
+    }
+
+    /* "Durdur" butonu: dönen halka + ortada sabit duran kare, hafif nabız efekti */
+    .stop-generation-btn {
+      position: relative;
+      width: 34px; height: 34px;
+      padding: 0;
+      background: var(--danger-color, #d93025) !important;
+      animation: stop-btn-pulse 1.6s ease-in-out infinite;
+    }
+    .stop-generation-btn .stop-btn-ring {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      animation: stop-btn-ring-spin 1.1s linear infinite;
+    }
+    .stop-generation-btn .stop-btn-square {
+      position: absolute;
+      width: 14px; height: 14px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .stop-generation-btn:hover {
+      transform: scale(1.08);
+    }
+    @keyframes stop-btn-ring-spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes stop-btn-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.75; }
+    }
+
+    .add-menu-container { position: relative; }
+    .add-menu {
+      display: none; position: absolute; bottom: 120%; left: 0;
+      background: var(--card-bg); border: 1px solid #dfe1e5;
+      border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      z-index: 10; width: 240px; overflow: hidden; padding: 8px;
+    }
+    .add-menu-item {
+      display: flex; align-items: flex-start; gap: 14px; padding: 12px;
+      border-radius: 12px; cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    .add-menu-item:hover { 
+      background: var(--hover-bg); 
+      transform: scale(1.03);
+    }
+    .add-menu-item .icon { font-size: 1.2rem; color: var(--primary-blue); margin-top: 2px; }
+    .add-menu-item .text-content { display: flex; flex-direction: column; }
+    .add-menu-item .title { font-size: 0.9rem; font-weight: 500; color: var(--text-color); }
+    .add-menu-item .description { font-size: 0.8rem; color: #5f6368; }
+
+    .premium-badge {
+      font-size: 0.7rem; color: #b30059; font-weight: bold;
+      margin-left: 6px; 
+    }
+    .premium-icon {
+      color: #b30059;
+      font-weight: bold;
+    }
+
+
+
+    .model-selector { position: relative; cursor: pointer; font-size: 0.8rem; color: var(--text-muted); padding: 4px 8px; border-radius: 8px; }
+    .model-dropdown {
+      display: none; position: absolute; top: 100%; left: 0; background: var(--card-bg);
+      border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.14); z-index: 10; width: 280px;
+      overflow: hidden; padding: 6px;
+    }
+    .model-option {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      padding: 10px 12px; font-size: 0.85rem; cursor: pointer; border-radius: 8px;
+      color: var(--text-color);
+    }
+    .model-option:hover { background: var(--hover-bg); }
+    .model-option.active { background: var(--hover-bg); }
+    .model-option-main { display: flex; flex-direction: column; gap: 2px; }
+    .model-option-name { font-weight: 600; }
+    .model-option-desc { font-size: 0.72rem; color: var(--text-muted); }
+    .model-option svg { color: var(--primary-blue, #0b57d0); flex-shrink: 0; }
+
+    /* Ayarlar > Uygulama sekmesindeki kişilik seçim kartları (model-option ile
+       aynı görsel dili kullanır, ama kenarlıklı - liste dropdown içinde değil). */
+    .personality-option {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      padding: 10px 12px; font-size: 0.85rem; cursor: pointer; border-radius: 10px;
+      color: var(--text-color); border: 1px solid var(--border-color);
+    }
+    .personality-option:hover { background: var(--hover-bg); }
+    .personality-option.active { background: var(--hover-bg); border-color: var(--primary-blue, #0b57d0); }
+    .personality-option-main { display: flex; flex-direction: column; gap: 2px; }
+    .personality-option-name { font-weight: 600; }
+    .personality-option-desc { font-size: 0.72rem; color: var(--text-muted); }
+    .personality-option svg { color: var(--primary-blue, #0b57d0); flex-shrink: 0; }
+

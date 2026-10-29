@@ -1,0 +1,522 @@
+/* Nova-AI styles - background.css (Dinamik Arka Plan & Blur Efektleri) */
+
+:root {
+  --nova-bg-blur: 30px;
+  --nova-orb-blur: 24px;
+  --nova-glass-blur: 16px;
+  --nova-bg-opacity: 0.98;
+}
+
+/* --- ANA ARKA PLAN TAŞIYICISI --- */
+.nova-lava-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: var(--nova-bg-opacity, 0.98);
+  transition: opacity 0.5s ease;
+}
+
+.nova-lava-bg::before,
+.nova-lava-bg::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(var(--nova-bg-blur, 30px));
+  transition: background 0.6s ease, filter 0.3s ease;
+  will-change: transform;
+}
+
+.nova-lava-bg::before {
+  width: 44vw;
+  height: 44vw;
+  min-width: 320px;
+  min-height: 320px;
+  animation: nova-lava-float-a 22s ease-in-out infinite alternate;
+  transform: translate3d(-10vw, 8vh, 0);
+}
+
+.nova-lava-bg::after {
+  width: 36vw;
+  height: 36vw;
+  min-width: 280px;
+  min-height: 280px;
+  animation: nova-lava-float-b 26s ease-in-out infinite alternate;
+  transform: translate3d(62vw, 42vh, 0);
+}
+
+.nova-lava-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(var(--nova-orb-blur, 24px));
+  mix-blend-mode: screen;
+  will-change: transform;
+  transition: background 0.6s ease, filter 0.3s ease, opacity 0.4s ease;
+}
+
+/* ========================================================
+   TEMA 1: LAVA LAMBASI (Varsayılan - Klasik Mavi / Mor Lav)
+   ======================================================== */
+.nova-bg-lava::before {
+  background: radial-gradient(circle at 35% 35%,
+    rgba(72, 139, 255, 0.22) 0%,
+    rgba(92, 118, 255, 0.15) 35%,
+    rgba(120, 92, 255, 0.08) 58%,
+    transparent 72%);
+}
+.nova-bg-lava::after {
+  background: radial-gradient(circle at 65% 40%,
+    rgba(28, 205, 214, 0.18) 0%,
+    rgba(74, 166, 255, 0.12) 42%,
+    transparent 72%);
+}
+.nova-bg-lava .nova-lava-orb.o1 {
+  width: 260px; height: 260px; left: 7%; top: 16%;
+  background: rgba(67, 124, 255, 0.14);
+  animation: nova-orb-1 18s ease-in-out infinite alternate;
+}
+.nova-bg-lava .nova-lava-orb.o2 {
+  width: 340px; height: 340px; right: 10%; top: 8%;
+  background: rgba(122, 85, 255, 0.13);
+  animation: nova-orb-2 22s ease-in-out infinite alternate;
+}
+.nova-bg-lava .nova-lava-orb.o3 {
+  width: 220px; height: 220px; left: 42%; bottom: 6%;
+  background: rgba(22, 190, 210, 0.14);
+  animation: nova-orb-3 17s ease-in-out infinite alternate;
+}
+.nova-bg-lava .nova-lava-orb.o4 {
+  width: 190px; height: 190px; right: 28%; bottom: 18%;
+  background: rgba(103, 58, 183, 0.10);
+  animation: nova-orb-4 20s ease-in-out infinite alternate;
+}
+
+/* ========================================================
+   TEMA 2: KUZEY IŞIKLARI (Aurora - Zümrüt & Neon Camgöbeği)
+   ======================================================== */
+.nova-bg-aurora::before {
+  background: radial-gradient(circle at 30% 30%,
+    rgba(0, 242, 254, 0.22) 0%,
+    rgba(79, 172, 254, 0.16) 40%,
+    transparent 70%);
+}
+.nova-bg-aurora::after {
+  background: radial-gradient(circle at 70% 45%,
+    rgba(0, 220, 130, 0.20) 0%,
+    rgba(0, 176, 155, 0.14) 45%,
+    transparent 72%);
+}
+.nova-bg-aurora .nova-lava-orb.o1 {
+  width: 290px; height: 290px; left: 5%; top: 12%;
+  background: rgba(0, 230, 160, 0.16);
+  animation: nova-orb-1 20s ease-in-out infinite alternate;
+}
+.nova-bg-aurora .nova-lava-orb.o2 {
+  width: 350px; height: 350px; right: 8%; top: 10%;
+  background: rgba(0, 198, 255, 0.16);
+  animation: nova-orb-2 24s ease-in-out infinite alternate;
+}
+.nova-bg-aurora .nova-lava-orb.o3 {
+  width: 230px; height: 230px; left: 45%; bottom: 8%;
+  background: rgba(142, 45, 226, 0.13);
+  animation: nova-orb-3 19s ease-in-out infinite alternate;
+}
+.nova-bg-aurora .nova-lava-orb.o4 {
+  width: 210px; height: 210px; right: 24%; bottom: 20%;
+  background: rgba(72, 219, 251, 0.14);
+  animation: nova-orb-4 21s ease-in-out infinite alternate;
+}
+
+/* ========================================================
+   TEMA 3: SİBER GÜN BATIMI (Sunset - Macenta & Şeftali Kor)
+   ======================================================== */
+.nova-bg-sunset::before {
+  background: radial-gradient(circle at 35% 30%,
+    rgba(255, 107, 107, 0.20) 0%,
+    rgba(238, 90, 36, 0.14) 40%,
+    transparent 72%);
+}
+.nova-bg-sunset::after {
+  background: radial-gradient(circle at 65% 45%,
+    rgba(234, 32, 115, 0.22) 0%,
+    rgba(142, 45, 226, 0.13) 45%,
+    transparent 70%);
+}
+.nova-bg-sunset .nova-lava-orb.o1 {
+  width: 270px; height: 270px; left: 8%; top: 14%;
+  background: rgba(255, 75, 43, 0.15);
+  animation: nova-orb-1 19s ease-in-out infinite alternate;
+}
+.nova-bg-sunset .nova-lava-orb.o2 {
+  width: 360px; height: 360px; right: 6%; top: 12%;
+  background: rgba(247, 37, 133, 0.16);
+  animation: nova-orb-2 23s ease-in-out infinite alternate;
+}
+.nova-bg-sunset .nova-lava-orb.o3 {
+  width: 240px; height: 240px; left: 40%; bottom: 5%;
+  background: rgba(254, 202, 87, 0.14);
+  animation: nova-orb-3 18s ease-in-out infinite alternate;
+}
+.nova-bg-sunset .nova-lava-orb.o4 {
+  width: 200px; height: 200px; right: 26%; bottom: 16%;
+  background: rgba(181, 23, 158, 0.12);
+  animation: nova-orb-4 22s ease-in-out infinite alternate;
+}
+
+/* ========================================================
+   TEMA 4: DERİN OKYANUS (Ocean - Akvamarin & Safir Dalgalar)
+   ======================================================== */
+.nova-bg-ocean::before {
+  background: radial-gradient(circle at 30% 30%,
+    rgba(10, 207, 254, 0.22) 0%,
+    rgba(73, 90, 255, 0.14) 40%,
+    transparent 70%);
+}
+.nova-bg-ocean::after {
+  background: radial-gradient(circle at 68% 45%,
+    rgba(0, 122, 223, 0.20) 0%,
+    rgba(0, 71, 171, 0.14) 48%,
+    transparent 72%);
+}
+.nova-bg-ocean .nova-lava-orb.o1 {
+  width: 280px; height: 280px; left: 6%; top: 15%;
+  background: rgba(0, 180, 216, 0.16);
+  animation: nova-orb-1 21s ease-in-out infinite alternate;
+}
+.nova-bg-ocean .nova-lava-orb.o2 {
+  width: 330px; height: 330px; right: 9%; top: 10%;
+  background: rgba(3, 83, 164, 0.16);
+  animation: nova-orb-2 25s ease-in-out infinite alternate;
+}
+.nova-bg-ocean .nova-lava-orb.o3 {
+  width: 220px; height: 220px; left: 44%; bottom: 7%;
+  background: rgba(72, 202, 228, 0.15);
+  animation: nova-orb-3 17s ease-in-out infinite alternate;
+}
+.nova-bg-ocean .nova-lava-orb.o4 {
+  width: 190px; height: 190px; right: 30%; bottom: 18%;
+  background: rgba(69, 123, 157, 0.13);
+  animation: nova-orb-4 23s ease-in-out infinite alternate;
+}
+
+/* ========================================================
+   TEMA 5: KOZMİK NEBULA (Cosmic - Galaksi Moru & Yıldız Tozu)
+   ======================================================== */
+.nova-bg-cosmic::before {
+  background: radial-gradient(circle at 35% 30%,
+    rgba(178, 36, 239, 0.22) 0%,
+    rgba(117, 121, 255, 0.15) 38%,
+    transparent 70%);
+}
+.nova-bg-cosmic::after {
+  background: radial-gradient(circle at 66% 45%,
+    rgba(236, 0, 140, 0.19) 0%,
+    rgba(113, 23, 234, 0.14) 45%,
+    transparent 72%);
+}
+.nova-bg-cosmic .nova-lava-orb.o1 {
+  width: 300px; height: 300px; left: 7%; top: 14%;
+  background: rgba(138, 43, 226, 0.16);
+  animation: nova-orb-1 20s ease-in-out infinite alternate;
+}
+.nova-bg-cosmic .nova-lava-orb.o2 {
+  width: 350px; height: 350px; right: 7%; top: 9%;
+  background: rgba(255, 20, 147, 0.14);
+  animation: nova-orb-2 23s ease-in-out infinite alternate;
+}
+.nova-bg-cosmic .nova-lava-orb.o3 {
+  width: 230px; height: 230px; left: 43%; bottom: 6%;
+  background: rgba(75, 0, 130, 0.15);
+  animation: nova-orb-3 18s ease-in-out infinite alternate;
+}
+.nova-bg-cosmic .nova-lava-orb.o4 {
+  width: 200px; height: 200px; right: 25%; bottom: 20%;
+  background: rgba(147, 112, 219, 0.12);
+  animation: nova-orb-4 22s ease-in-out infinite alternate;
+}
+
+/* ========================================================
+   TEMA 6: BUZLU DUMAN (Smoke - Minimalist Buzlu Sis)
+   ======================================================== */
+.nova-bg-smoke::before {
+  background: radial-gradient(circle at 30% 30%,
+    rgba(142, 158, 171, 0.16) 0%,
+    rgba(200, 210, 220, 0.09) 45%,
+    transparent 70%);
+}
+.nova-bg-smoke::after {
+  background: radial-gradient(circle at 70% 45%,
+    rgba(170, 185, 200, 0.14) 0%,
+    rgba(120, 135, 150, 0.08) 50%,
+    transparent 72%);
+}
+.nova-bg-smoke .nova-lava-orb.o1 {
+  width: 260px; height: 260px; left: 8%; top: 18%;
+  background: rgba(160, 175, 190, 0.10);
+  animation: nova-orb-1 24s ease-in-out infinite alternate;
+}
+.nova-bg-smoke .nova-lava-orb.o2 {
+  width: 320px; height: 320px; right: 10%; top: 12%;
+  background: rgba(180, 195, 210, 0.11);
+  animation: nova-orb-2 28s ease-in-out infinite alternate;
+}
+.nova-bg-smoke .nova-lava-orb.o3 {
+  width: 210px; height: 210px; left: 42%; bottom: 8%;
+  background: rgba(140, 155, 170, 0.09);
+  animation: nova-orb-3 22s ease-in-out infinite alternate;
+}
+.nova-bg-smoke .nova-lava-orb.o4 {
+  width: 180px; height: 180px; right: 28%; bottom: 18%;
+  background: rgba(210, 220, 230, 0.08);
+  animation: nova-orb-4 26s ease-in-out infinite alternate;
+}
+
+/* ========================================================
+   TEMA 7: SİBER MATRİS (Matrix - Neon Siber Işıma)
+   ======================================================== */
+.nova-bg-matrix::before {
+  background: radial-gradient(circle at 35% 30%,
+    rgba(0, 255, 135, 0.20) 0%,
+    rgba(0, 180, 120, 0.12) 42%,
+    transparent 70%);
+}
+.nova-bg-matrix::after {
+  background: radial-gradient(circle at 65% 45%,
+    rgba(96, 239, 255, 0.18) 0%,
+    rgba(0, 210, 255, 0.10) 45%,
+    transparent 72%);
+}
+.nova-bg-matrix .nova-lava-orb.o1 {
+  width: 270px; height: 270px; left: 6%; top: 15%;
+  background: rgba(0, 255, 150, 0.14);
+  animation: nova-orb-1 19s ease-in-out infinite alternate;
+}
+.nova-bg-matrix .nova-lava-orb.o2 {
+  width: 340px; height: 340px; right: 8%; top: 10%;
+  background: rgba(0, 229, 255, 0.15);
+  animation: nova-orb-2 23s ease-in-out infinite alternate;
+}
+.nova-bg-matrix .nova-lava-orb.o3 {
+  width: 220px; height: 220px; left: 42%; bottom: 6%;
+  background: rgba(50, 255, 126, 0.12);
+  animation: nova-orb-3 17s ease-in-out infinite alternate;
+}
+.nova-bg-matrix .nova-lava-orb.o4 {
+  width: 190px; height: 190px; right: 26%; bottom: 20%;
+  background: rgba(0, 168, 255, 0.11);
+  animation: nova-orb-4 21s ease-in-out infinite alternate;
+}
+
+/* ========================================================
+   TEMA 8: SADE (Düz Renk - Animasyonsuz)
+   ======================================================== */
+.nova-bg-none {
+  display: none !important;
+}
+
+/* ========================================================
+   KARANLIK MOD AYARLARI (Dark Mode Adaptations)
+   ======================================================== */
+body.dark-mode .nova-lava-bg {
+  opacity: calc(var(--nova-bg-opacity, 0.98) * 1.15);
+}
+body.dark-mode .nova-bg-lava::before {
+  background: radial-gradient(circle at 35% 35%,
+    rgba(72, 139, 255, 0.30) 0%,
+    rgba(92, 118, 255, 0.20) 35%,
+    rgba(120, 92, 255, 0.12) 58%,
+    transparent 72%);
+}
+body.dark-mode .nova-bg-lava::after {
+  background: radial-gradient(circle at 65% 40%,
+    rgba(28, 205, 214, 0.24) 0%,
+    rgba(74, 166, 255, 0.16) 42%,
+    transparent 72%);
+}
+body.dark-mode .nova-bg-aurora::before {
+  background: radial-gradient(circle at 30% 30%,
+    rgba(0, 242, 254, 0.28) 0%,
+    rgba(79, 172, 254, 0.20) 40%,
+    transparent 70%);
+}
+body.dark-mode .nova-bg-aurora::after {
+  background: radial-gradient(circle at 70% 45%,
+    rgba(0, 220, 130, 0.26) 0%,
+    rgba(0, 176, 155, 0.18) 45%,
+    transparent 72%);
+}
+body.dark-mode .nova-bg-sunset::before {
+  background: radial-gradient(circle at 35% 30%,
+    rgba(255, 107, 107, 0.26) 0%,
+    rgba(238, 90, 36, 0.18) 40%,
+    transparent 72%);
+}
+body.dark-mode .nova-bg-sunset::after {
+  background: radial-gradient(circle at 65% 45%,
+    rgba(234, 32, 115, 0.28) 0%,
+    rgba(142, 45, 226, 0.18) 45%,
+    transparent 70%);
+}
+body.dark-mode .nova-bg-ocean::before {
+  background: radial-gradient(circle at 30% 30%,
+    rgba(10, 207, 254, 0.28) 0%,
+    rgba(73, 90, 255, 0.18) 40%,
+    transparent 70%);
+}
+body.dark-mode .nova-bg-ocean::after {
+  background: radial-gradient(circle at 68% 45%,
+    rgba(0, 122, 223, 0.26) 0%,
+    rgba(0, 71, 171, 0.18) 48%,
+    transparent 72%);
+}
+body.dark-mode .nova-bg-cosmic::before {
+  background: radial-gradient(circle at 35% 30%,
+    rgba(178, 36, 239, 0.30) 0%,
+    rgba(117, 121, 255, 0.20) 38%,
+    transparent 70%);
+}
+body.dark-mode .nova-bg-cosmic::after {
+  background: radial-gradient(circle at 66% 45%,
+    rgba(236, 0, 140, 0.26) 0%,
+    rgba(113, 23, 234, 0.18) 45%,
+    transparent 72%);
+}
+
+/* ========================================================
+   BUZLU CAM (GLASSMORPHISM) BLUR EFEKTİ
+   ======================================================== */
+body.glassmorphism-active #appContainer .sidebar {
+  background: rgba(240, 244, 249, 0.72) !important;
+  backdrop-filter: blur(var(--nova-glass-blur, 16px)) !important;
+  -webkit-backdrop-filter: blur(var(--nova-glass-blur, 16px)) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+body.dark-mode.glassmorphism-active #appContainer .sidebar {
+  background: rgba(40, 40, 40, 0.72) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+body.glassmorphism-active .chat-header {
+  background: rgba(248, 250, 253, 0.75) !important;
+  backdrop-filter: blur(var(--nova-glass-blur, 16px)) !important;
+  -webkit-backdrop-filter: blur(var(--nova-glass-blur, 16px)) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+body.dark-mode.glassmorphism-active .chat-header {
+  background: rgba(31, 31, 31, 0.75) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+body.glassmorphism-active .input-container {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(var(--nova-glass-blur, 16px)) !important;
+  -webkit-backdrop-filter: blur(var(--nova-glass-blur, 16px)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+}
+body.dark-mode.glassmorphism-active .input-container {
+  background: rgba(45, 45, 45, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ========================================================
+   ANİMASYON KEYFRAME'LERİ
+   ======================================================== */
+@keyframes nova-lava-float-a {
+  to { transform: translate3d(34vw, 30vh, 0) scale(1.15); }
+}
+@keyframes nova-lava-float-b {
+  to { transform: translate3d(-30vw, -22vh, 0) scale(1.18); }
+}
+@keyframes nova-orb-1 {
+  to { transform: translate3d(22vw, 12vh, 0) scale(1.2); }
+}
+@keyframes nova-orb-2 {
+  to { transform: translate3d(-24vw, 25vh, 0) scale(0.82); }
+}
+@keyframes nova-orb-3 {
+  to { transform: translate3d(15vw, -17vh, 0) scale(1.25); }
+}
+@keyframes nova-orb-4 {
+  to { transform: translate3d(-18vw, -14vh, 0) scale(0.9); }
+}
+
+/* Chat içeriği lav arka planının üzerinde kalsın */
+#appContainer { position: relative; z-index: 1; }
+#appContainer > * { position: relative; z-index: 1; }
+
+/* ========================================================
+   AYARLARDAKİ ARKA PLAN SEÇİCİ KARTLARI
+   ======================================================== */
+.nova-bg-presets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.nova-bg-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-color);
+  background: var(--card-bg);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+.nova-bg-card:hover {
+  border-color: var(--primary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+.nova-bg-card.active {
+  border-color: var(--primary-blue);
+  background: var(--hover-bg);
+  box-shadow: 0 0 0 2px var(--primary-blue);
+}
+.nova-bg-preview {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+.preview-lava { background: linear-gradient(135deg, #488bff, #7a55ff, #16bed2); }
+.preview-aurora { background: linear-gradient(135deg, #00f2fe, #4facfe, #00b09b, #96c93d); }
+.preview-sunset { background: linear-gradient(135deg, #fa709a, #fee140, #ff0844); }
+.preview-ocean { background: linear-gradient(135deg, #0acffe, #495aff, #002244); }
+.preview-cosmic { background: linear-gradient(135deg, #b224ef, #7579ff, #111026); }
+.preview-smoke { background: linear-gradient(135deg, #8e9eab, #eef2f3); }
+.preview-matrix { background: linear-gradient(135deg, #00ff87, #60efff, #051410); }
+.preview-none { background: var(--border-color); }
+
+.nova-bg-card-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.nova-bg-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nova-bg-desc {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nova-theme-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  background: var(--hover-bg);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+}

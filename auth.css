@@ -1,0 +1,387 @@
+/* Nova-AI styles - auth.css (Ultra Soft Glassmorphism Tasarım) */
+
+.auth-container {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  overflow: hidden;
+  padding: 20px;
+}
+
+@keyframes nova-auth-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.glass-login-card {
+  position: relative;
+  z-index: 10;
+  width: 430px;
+  max-width: 92vw;
+  padding: 42px 36px 36px 36px;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08), 0 0 1px rgba(255, 255, 255, 0.6);
+  text-align: center;
+  color: var(--text-color, #2d3748);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  animation: nova-auth-card-in 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.dark-mode .glass-login-card {
+  background: rgba(34, 35, 42, 0.78);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35), 0 0 1px rgba(255, 255, 255, 0.15);
+  color: #e8eaed;
+}
+
+.glass-login-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 32px 70px rgba(0, 0, 0, 0.12);
+}
+
+body.dark-mode .glass-login-card:hover {
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.45);
+}
+
+.back-to-selection-btn {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: var(--text-color, #4a5568);
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .back-to-selection-btn {
+  background: rgba(45, 47, 56, 0.8);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #e8eaed;
+}
+
+.back-to-selection-btn:hover {
+  background: #ffffff;
+  transform: scale(1.08) translateX(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .back-to-selection-btn:hover {
+  background: rgba(60, 63, 75, 0.9);
+}
+
+/* --- YUMUŞAK KAPSÜL / SEGMENTED TAB TASARIMI --- */
+.auth-tabs {
+  display: flex;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 5px;
+  border-radius: 999px;
+  margin: 10px 0 26px 0;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  gap: 4px;
+}
+
+body.dark-mode .auth-tabs {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.auth-tab {
+  flex: 1;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--text-muted, #718096);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.auth-tab.active {
+  background: var(--card-bg, #ffffff);
+  color: var(--primary-blue, #0b57d0);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode .auth-tab.active {
+  background: rgba(55, 58, 70, 0.9);
+  color: #8ab4f8;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* Form alanları */
+.auth-form-fields {
+  transition: opacity 0.2s ease;
+}
+
+#nameField {
+  overflow: hidden;
+  max-height: 80px;
+  opacity: 1;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, margin 0.3s ease;
+}
+
+#nameField.field-hidden {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  pointer-events: none;
+}
+
+.login-field {
+  text-align: left;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.login-field label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-muted, #718096);
+  letter-spacing: 0.2px;
+}
+
+.login-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 18px;
+  border-radius: 18px;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.8);
+  outline: none;
+  font-size: 0.92rem;
+  color: var(--text-color, #2d3748);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s ease;
+}
+
+body.dark-mode .login-field input {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #e8eaed;
+}
+
+.login-field input:focus {
+  background: #ffffff;
+  border-color: var(--primary-blue, #0b57d0);
+  box-shadow: 0 0 0 3.5px rgba(11, 87, 208, 0.18), inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+body.dark-mode .login-field input:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #8ab4f8;
+  box-shadow: 0 0 0 3.5px rgba(138, 180, 248, 0.22);
+}
+
+.toggle-pass {
+  position: absolute;
+  right: 16px;
+  top: 36px;
+  cursor: pointer;
+  opacity: 0.55;
+  font-size: 1rem;
+  transition: opacity 0.2s;
+  user-select: none;
+}
+.toggle-pass:hover {
+  opacity: 1;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-bottom: 22px;
+  color: var(--text-muted, #718096);
+  padding: 0 4px;
+}
+
+.login-options a {
+  color: var(--primary-blue, #0b57d0);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.login-options a:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+.login-options label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Ana Giriş Butonu */
+.sign-in-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--primary-blue, #0b57d0), #3878e8);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(11, 87, 208, 0.28);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sign-in-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(11, 87, 208, 0.38);
+  background: linear-gradient(135deg, #0947a8, #2a6edc);
+}
+
+.sign-in-btn:active {
+  transform: translateY(0);
+}
+
+/* Ayrıcı çizgi */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 0 16px 0;
+  color: var(--text-muted, #a0aec0);
+  font-size: 0.8rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(160, 174, 192, 0.28);
+}
+
+body.dark-mode .auth-divider::before,
+body.dark-mode .auth-divider::after {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Google ile Devam Et Butonu */
+.google-signin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 13px 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  color: #3c4043;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s ease;
+}
+
+.google-signin-btn:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.google-signin-btn:active {
+  transform: translateY(0);
+}
+
+body.dark-mode .google-signin-btn {
+  background: rgba(45, 47, 56, 0.9);
+  color: #e8eaed;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .google-signin-btn:hover {
+  background: rgba(56, 59, 70, 0.95);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+}
+
+.google-signin-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* --- AUTH HIZLI AKSİYON BUTONLARI --- */
+.auth-quick-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.auth-quick-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  border: 1.5px solid rgba(11, 87, 208, 0.15);
+  background: rgba(11, 87, 208, 0.06);
+  color: var(--primary-blue, #0b57d0);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  letter-spacing: 0.1px;
+}
+
+.auth-quick-btn:hover {
+  background: rgba(11, 87, 208, 0.12);
+  border-color: rgba(11, 87, 208, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(11, 87, 208, 0.12);
+}
+
+body.dark-mode .auth-quick-btn {
+  border-color: rgba(138, 180, 248, 0.2);
+  background: rgba(138, 180, 248, 0.07);
+  color: #8ab4f8;
+}
+
+body.dark-mode .auth-quick-btn:hover {
+  background: rgba(138, 180, 248, 0.14);
+  border-color: rgba(138, 180, 248, 0.35);
+}

@@ -1,0 +1,240 @@
+/* Nova-AI styles - splash.css (Lüks Animasyonlu Splash Ekranı) */
+
+/* ── ANA SPLASH KAPSAYICI ── */
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  overflow: hidden;
+  background: linear-gradient(145deg, #f0f4ff 0%, #fafbff 50%, #f5f0ff 100%);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.6s ease;
+}
+
+body.dark-mode #splash-screen {
+  background: linear-gradient(145deg, #0d1117 0%, #161b22 50%, #1a1025 100%);
+}
+
+#splash-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(1.04);
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 1, 1),
+              transform 0.55s cubic-bezier(0.4, 0, 1, 1),
+              visibility 0.55s ease;
+}
+
+/* ── ARKA PLAN ORBS ── */
+#splash-screen::before,
+#splash-screen::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+#splash-screen::before {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(11, 87, 208, 0.12) 0%, transparent 70%);
+  top: -200px; left: -200px;
+  animation: splash-orb-a 8s ease-in-out infinite alternate;
+}
+
+#splash-screen::after {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+  bottom: -150px; right: -100px;
+  animation: splash-orb-b 10s ease-in-out infinite alternate;
+}
+
+@keyframes splash-orb-a {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(60px, 40px) scale(1.15); }
+}
+@keyframes splash-orb-b {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-50px, -30px) scale(1.1); }
+}
+
+/* ── LOGO CONTAINER ── */
+.splash-logo-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+  animation: splash-logo-drop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes splash-logo-drop {
+  from { opacity: 0; transform: translateY(-30px) scale(0.8); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── ATOM SPINNER ── */
+.nova-atom-spinner {
+  width: 90px;
+  height: 90px;
+  filter: drop-shadow(0 0 18px rgba(11, 87, 208, 0.35))
+          drop-shadow(0 0 35px rgba(11, 87, 208, 0.15));
+}
+
+.nova-atom-spinner ellipse:nth-child(1) {
+  stroke: #0b57d0;
+  animation: splash-orbit-1 2.4s linear infinite;
+  transform-origin: 50px 50px;
+}
+.nova-atom-spinner ellipse:nth-child(2) {
+  stroke: #7c3aed;
+  animation: splash-orbit-2 2.8s linear infinite reverse;
+  transform-origin: 50px 50px;
+}
+.nova-atom-spinner ellipse:nth-child(3) {
+  stroke: #06b6d4;
+  animation: splash-orbit-3 3.2s linear infinite;
+  transform-origin: 50px 50px;
+}
+
+@keyframes splash-orbit-1 {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes splash-orbit-2 {
+  from { transform: rotate(60deg); }
+  to   { transform: rotate(420deg); }
+}
+@keyframes splash-orbit-3 {
+  from { transform: rotate(120deg); }
+  to   { transform: rotate(480deg); }
+}
+
+/* Merkezdeki çekirdek nabzı */
+.nova-atom-spinner circle {
+  fill: #0b57d0;
+  animation: splash-core-pulse 1.4s ease-in-out infinite;
+  transform-origin: 50px 50px;
+}
+
+@keyframes splash-core-pulse {
+  0%, 100% { transform: scale(1);    opacity: 1; }
+  50%       { transform: scale(1.5); opacity: 0.7; }
+}
+
+/* ── GLOWING RİNG ── */
+.splash-ring {
+  position: absolute;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(11, 87, 208, 0.2);
+  animation: splash-ring-pulse 2s ease-in-out infinite;
+}
+
+.splash-ring-2 {
+  width: 150px; height: 150px;
+  border-color: rgba(124, 58, 237, 0.12);
+  animation-delay: 0.5s;
+}
+
+.splash-ring-3 {
+  width: 185px; height: 185px;
+  border-color: rgba(6, 182, 212, 0.08);
+  animation-delay: 1s;
+}
+
+@keyframes splash-ring-pulse {
+  0%   { transform: scale(0.9); opacity: 0.8; }
+  50%  { transform: scale(1.1); opacity: 0.3; }
+  100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+/* ── BAŞLIK ── */
+.splash-title-wrap {
+  text-align: center;
+  animation: splash-text-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+@keyframes splash-text-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.splash-brand {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #0b57d0 0%, #7c3aed 50%, #06b6d4 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: splash-gradient-flow 3s ease-in-out infinite;
+  margin-bottom: 6px;
+}
+
+@keyframes splash-gradient-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+#loading-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #6b7280;
+  letter-spacing: 0.3px;
+  animation: splash-loading-dots 1.8s ease-in-out infinite;
+  margin: 0;
+}
+
+body.dark-mode #loading-text { color: #9ca3af; }
+
+@keyframes splash-loading-dots {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+/* ── İLERLEME ÇUBUĞU ── */
+.splash-progress-bar {
+  width: 200px;
+  height: 3px;
+  background: rgba(11, 87, 208, 0.1);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 24px;
+  animation: splash-text-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+
+.splash-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0b57d0, #7c3aed, #06b6d4);
+  border-radius: 99px;
+  background-size: 200% 100%;
+  animation: splash-progress-sweep 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+             splash-gradient-flow 2s linear infinite;
+}
+
+@keyframes splash-progress-sweep {
+  from { width: 5%; }
+  to   { width: 92%; }
+}
+
+/* ── KÖŞE SÜSLEME ── */
+.splash-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(11, 87, 208, 0.15);
+  animation: splash-dot-float 4s ease-in-out infinite;
+}
+
+@keyframes splash-dot-float {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+  50%       { transform: translateY(-10px) scale(1.2); opacity: 1; }
+}

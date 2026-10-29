@@ -1,0 +1,57 @@
+/* ============================================================
+   Nova-AI styles - soft-animations.css
+   Soft animation layer: subtle entrance/hover polish that does
+   not interfere with the existing component animations.
+   ============================================================ */
+
+@keyframes nova-soft-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes nova-soft-pop {
+  from { opacity: 0; transform: scale(.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Utility classes (available for new components) */
+.nova-fade-up { animation: nova-soft-fade-up .3s cubic-bezier(.22, .94, .36, 1) both; }
+.nova-pop     { animation: nova-soft-pop .25s cubic-bezier(.22, .94, .36, 1) both; }
+.nova-delay-1 { animation-delay: .05s; }
+.nova-delay-2 { animation-delay: .1s; }
+.nova-delay-3 { animation-delay: .15s; }
+.nova-delay-4 { animation-delay: .2s; }
+
+/* Gentle entrance for rendered content */
+.msg.bot { animation: nova-soft-fade-up .28s cubic-bezier(.22, .94, .36, 1) both; }
+.nova-steps-block,
+.nova-file-card,
+.code-bubble { animation: nova-soft-fade-up .3s cubic-bezier(.22, .94, .36, 1) both; }
+
+/* Soft hover transitions across interactive elements */
+.chat-item,
+.nav-item,
+.icon-btn,
+.settings-tab,
+.model-option,
+.personality-option {
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+}
+
+.upgrade-btn,
+.danger-btn,
+.sign-in-btn,
+.video-option {
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease,
+              box-shadow .2s ease, transform .2s ease;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .nova-fade-up,
+  .nova-pop,
+  .msg.bot,
+  .nova-steps-block,
+  .nova-file-card,
+  .code-bubble { animation: none; }
+  * { transition-duration: .01ms !important; }
+}
